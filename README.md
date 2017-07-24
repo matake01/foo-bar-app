@@ -10,6 +10,6 @@ A simple Java Web template using Spring REST and Maven. Distribution support wit
 
 ## Getting started
 
-`mvn eclipse:eclipse` - Adds Eclipse Dynamic Web support to the project based on the current pom.xml
-`mvn test` - Runs the unit tests
-`mvn package`- Builds the final .war
+- `mvn eclipse:eclipse` - Adds Eclipse Dynamic Web support to the project based on the current pom.xml
+- `mvn test` - Runs the unit tests
+- `mvn package`- Builds the final .war
