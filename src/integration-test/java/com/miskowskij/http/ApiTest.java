@@ -1,8 +1,8 @@
-package com.miskowskij;
+package com.miskowskij.http;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+
+import com.miskowskij.IntegrationTest;
 
 import org.junit.*;
 import org.junit.experimental.categories.Category;
@@ -10,22 +10,7 @@ import org.junit.experimental.categories.Category;
 import static org.junit.Assert.*;
 
 @Category(IntegrationTest.class)
-public class HttpClientTest {
-
-	private static WebDriver driver;
-	
-	private final String domain = "http://localhost:9090/aws-java-app";
-	
-	@BeforeClass
-	public static void setup() {
-		System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
-		driver = new ChromeDriver();
-	}
-	
-	@AfterClass
-	public static void cleanUp(){
-		driver.quit();
-	}
+public class ApiTest extends Selenium {
 	
 	@Test
 	public void testIndex(){

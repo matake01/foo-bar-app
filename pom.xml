@@ -1,7 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  
-    <properties>
+ 	
+	  <modelVersion>4.0.0</modelVersion>
+	  <groupId>com.miskowskij</groupId>
+	  <artifactId>aws-java-app</artifactId>
+	  <packaging>war</packaging>
+	  <version>1.0-SNAPSHOT</version>
+	  <name>${app.name}</name>
+	  <url>http://maven.apache.org</url>
+ 
+     <properties>
   		<app.name>aws-java-app</app.name>
 		<jdk.version>1.8</jdk.version>
 		<springframework.version>4.3.0.RELEASE</springframework.version>
@@ -11,16 +19,9 @@
 		<selenium.version>2.52.0</selenium.version>
 		<logback.version>1.0.13</logback.version>
 		<jcl-over-slf4j.version>1.7.5</jcl-over-slf4j.version>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
-	
-	  <modelVersion>4.0.0</modelVersion>
-	  <groupId>com.miskowskij</groupId>
-	  <artifactId>${app.name}</artifactId>
-	  <packaging>war</packaging>
-	  <version>1.0-SNAPSHOT</version>
-	  <name>${app.name}</name>
-	  <url>http://maven.apache.org</url>
-  
+	 
   	<dependencies>
 
 		<dependency>
@@ -108,11 +109,12 @@
 				    <!-- Always download and attach dependencies source code -->
 					<downloadSources>true</downloadSources>
 					<downloadJavadocs>false</downloadJavadocs>
+					
 					<!-- Avoid type mvn eclipse:eclipse -Dwtpversion=2.0 -->
 					<wtpversion>2.0</wtpversion>
 				</configuration>
 		  </plugin>
-
+      
 		  <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-compiler-plugin</artifactId>
@@ -141,33 +143,66 @@
 				<artifactId>build-helper-maven-plugin</artifactId>
 				<version>1.9.1</version>
 				<executions>
-			 	<execution>
-				 	<id>add-integration-test-sources</id>
-				 	<phase>generate-test-sources</phase>
-				 	<goals>
-				 		<goal>add-test-source</goal>
-				 	</goals>
-				 	<configuration>
-					 	<sources>
-					 		<source>src/integration-test/java</source>
-					 	</sources>
-				 	</configuration>
-			 	</execution>
-			 	<execution>
-				 	<id>add-integration-test-resources</id>
-				 	<phase>generate-test-resources</phase>
-				 	<goals>
-				 		<goal>add-test-resource</goal>
-				 	</goals>
-				 	<configuration>
-					 	<resources>
-					 		<resource>
-					 			<filtering>true</filtering>
-					 			<directory>src/integration-test/resources</directory>
-					 		</resource>
-					 	</resources>
-				 	</configuration>
-			 	</execution>
+				
+					<!-- Handle integration test sources -->
+				 	<execution>
+					 	<id>add-integration-test-sources</id>
+					 	<phase>generate-test-sources</phase>
+					 	<goals>
+					 		<goal>add-test-source</goal>
+					 	</goals>
+					 	<configuration>
+						 	<sources>
+						 		<source>src/integration-test/java</source>
+						 	</sources>
+					 	</configuration>
+				 	</execution>
+				 				 	
+				 	<execution>
+			            <id>add-integration-ide-source</id>
+			            <phase>generate-sources</phase>
+			            <goals>
+			              <goal>add-source</goal>
+			            </goals>
+			            <configuration>
+			              <sources>
+								<source>src/integration-test/java</source>
+			              </sources>
+			            </configuration>
+		          	</execution>
+				 	
+				 	<!-- Handle integration test resources -->
+				 	<execution>
+					 	<id>add-integration-test-resources</id>
+					 	<phase>generate-test-resources</phase>
+					 	<goals>
+					 		<goal>add-test-resource</goal>
+					 	</goals>
+					 	<configuration>
+						 	<resources>
+						 		<resource>
+						 			<filtering>true</filtering>
+						 			<directory>src/integration-test/resources</directory>
+						 		</resource>
+						 	</resources>
+					 	</configuration>
+				 	</execution>
+			          
+			          <execution>
+				            <id>add-ide-resource</id>
+				            <phase>generate-resources</phase>
+				            <goals>
+				              <goal>add-resource</goal>
+				            </goals>
+				            <configuration>
+				              <resources>
+							 		<resource>
+							 			<directory>src/integration-test/resources</directory>
+							 		</resource>
+							 	</resources>
+				            </configuration>
+			          </execution>
+		          
 				</executions>
 			</plugin>
 			
