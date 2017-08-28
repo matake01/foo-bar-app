@@ -13,7 +13,7 @@ public class Selenium {
 	
 	@BeforeClass
 	public static void setup() {
-		System.setProperty("webdriver.chrome.driver", "/Users/mathiasakerberg/Documents/development/misc/chrome-driver/chromedriver");
+		System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
 		
 		driver = new ChromeDriver();
 		// driver = new FirefoxDriver();

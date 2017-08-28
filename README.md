@@ -10,13 +10,19 @@ Distribution support according to the Continuous Integration/Delivery principle 
 - Maven 3.X
 - Tomcat 7+
 
-## Unit Tests
+# Testing
+
+Supports both Unit and Integration Tests using Maven Surefire and Failsafe plugins.
+
+# Run Unit Tests
+
 All unit tests are located in the directory `src/test/java` and do not need any further setup. 
 - `mvn test` - Runs the unit tests
 
-## Integration Tests
-This app uses [Selenium](http://www.seleniumhq.org) for API client testing over Http. To be able to run the integration test the web driver has to be set in the file `Selenium.java` located in `src/integration-test/java/com/miskowskij/http/`.
+# Run Integration Tests
+This app uses [Selenium](http://www.seleniumhq.org) for API client testing over Http. To be able to run the integration test the path of the local web driver has to be set in `Selenium.java` located in `src/integration-test/java/com/miskowskij/http/`.
 
+Following commands will initiate 
 - `mvn integration-test` - Runs the integration tests in directory `src/integration-test/java`
 - `mvn verify` - Runs all tests
 
