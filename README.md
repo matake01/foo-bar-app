@@ -2,7 +2,7 @@
 
 This app is created by the standard Maven Webapp archetype with Spring REST support added. 
 
-AWS distribution support according to the Continuous Integration/Delivery using Docker.
+AWS distribution support according to the Continuous Integration/Delivery principle using Docker.
 
 ## Runtime Requirements
 
