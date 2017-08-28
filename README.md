@@ -4,24 +4,24 @@ This app is created by the standard Maven Webapp archetype with Spring REST supp
 
 Distribution support according to the Continuous Integration/Delivery principle and containerized with Docker. 
 
-# Runtime Requirements
+## Runtime Requirements
 
 - JDK 1.8
 - Maven 3.X
 - Tomcat 7+
 
-# Testing
+## Testing
 
 Supports both Unit and Integration Tests using Maven Surefire and Failsafe plugins.
 
 - `mvn verify` - Runs all tests
 
-## Unit Testings
+### Unit Testings
 
 All unit tests are located in the directory `src/test/java` and do not need any further setup. 
 - `mvn test` - Runs the unit tests
 
-## Integration Testing
+### Integration Testing
 This app uses [Selenium](http://www.seleniumhq.org) for API client testing over Http. To be able to run the integration test the path of the local web driver has to be set in `Selenium.java` located in `src/integration-test/java/com/miskowskij/http/`.
 
 Following commands will initiate 
