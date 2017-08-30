@@ -4,21 +4,29 @@ This app is created by the standard Maven Webapp archetype with Spring REST supp
 
 AWS distribution support according to the Continuous Integration/Delivery principle using Docker.
 
-## Runtime Requirements
+Following command will build and package the project:
+
+```sh
+mvn clean install
+```
+
+## Prerequisites
 
 - JDK 1.8
 - Maven 3.X
-- Tomcat 7+
+- [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads)
+
+## Techniques used
+
+- [Spring REST Service](https://spring.io/guides/gs/rest-service/)
+- [Docker](http://www.docker.com)
+- [CircleCI](http://circleci.com)
+- [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/)
+- [SeleniumHQ](http://seleniumhq.org)
 
 ## Testing
 
 Supports both Unit and Integration Tests using Maven Surefire and Failsafe plugins.
-
-To be able to run any test we have to resolve all test dependencies:
-
-```sh
-mvn dependency:resolve
-```
 
 Verify and run all tests:
 
@@ -35,9 +43,9 @@ mvn test
 ```
 
 #### Run Integration Tests
-This app uses [Selenium](http://www.seleniumhq.org) for API client testing over Http which requires a WebDriver to be downloaded. The default driver is set to be the [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads).
+This boilerplate project uses [Selenium](http://www.seleniumhq.org) for API client testing over Http, which requires a WebDriver to be downloaded. 
 
-Next, you have to enter the path to your recently downloaded driver in the environment variable `SELENIUM_WEBDRIVER_PATH`.
+The default driver is set to [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads). Before you will be able to run the tests, you have to enter the path to your recently downloaded driver in the environment variable `SELENIUM_WEBDRIVER_PATH`.
 
 Run following command to trigger the tests in directory `src/integration-test/java`:
 
@@ -58,7 +66,7 @@ mvn eclipse:eclipse
 First build and package the project with maven:
 
 ```sh
-docker run -it --rm -v "$PWD":/app -w /app maven:3.3-jdk-8 mvn clean package -DskipTests
+docker run -it --rm -v "$PWD":/app -w /app maven:3.3-jdk-8 mvn clean package
 ```
 
 Build your image:
@@ -79,10 +87,4 @@ Enter following URL in your browser:
 http://localhost:8080/aws-java-app
 ```
 
-## Techniques used
 
-- [Spring REST Service](https://spring.io/guides/gs/rest-service/)
-- [Docker](http://www.docker.com)
-- [CircleCI](http://circleci.com)
-- [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/)
-- [SeleniumHQ](http://seleniumhq.org)
