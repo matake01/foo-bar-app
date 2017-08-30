@@ -144,8 +144,6 @@
                </configuration>
            </plugin>
            
-            <!-- Add support for src/integration-test folder -->
-            <!-- Url: https://www.linkedin.com/pulse/example-how-run-integration-test-maven-linda-wu -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>

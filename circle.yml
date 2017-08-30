@@ -22,13 +22,13 @@ test:
       - ./integration-test.sh
 
     post:
-    - docker run -d -p 8000:80 $DOCKER_ORGANISATION/$DOCKER_REPOSITORY_NAME:$CIRCLE_SHA1; sleep 1
-    - curl -v -L --retry 5 --retry-delay 5 -v http://localhost:8000
+    - docker run -d -p 8080:80 $DOCKER_ORGANISATION/$DOCKER_REPOSITORY_NAME:$CIRCLE_SHA1; sleep 1
+    - curl -v -L --retry 5 --retry-delay 5 -v http://localhost:8080/aws-java-app
 
 deployment:
   elasticbeanstalk:
     branch: master
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - chmod +x deploy.sh
-      - ./deploy.sh $CIRCLE_SHA1 $DOCKER_ORGANISATION $DOCKER_REPOSITORY_NAME $AWS_APPLICATION_NAME $AWS_ENVIRONMENT_NAME $AWS_EB_BUCKET_NAME $AWS_REGION
+      # - chmod +x deploy.sh
+      # - ./deploy.sh $CIRCLE_SHA1 $DOCKER_ORGANISATION $DOCKER_REPOSITORY_NAME $AWS_APPLICATION_NAME $AWS_ENVIRONMENT_NAME $AWS_EB_BUCKET_NAME $AWS_REGION
