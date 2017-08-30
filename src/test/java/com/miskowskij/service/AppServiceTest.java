@@ -1,4 +1,4 @@
-package com.miskowskij;
+package com.miskowskij.service;
 
 import com.miskowskij.service.AppService;
 

@@ -14,7 +14,13 @@ AWS distribution support according to the Continuous Integration/Delivery princi
 
 Supports both Unit and Integration Tests using Maven Surefire and Failsafe plugins.
 
-Verify and run all tests
+To be able to run any test we have to resolve all test dependencies:
+
+```sh
+mvn dependency:resolve
+```
+
+Verify and run all tests:
 
 ```sh
 mvn verify
@@ -22,7 +28,7 @@ mvn verify
 
 #### Run Unit Tests
 
-Runs the unit tests located in the directory `src/test/java` and do not need any further setup. 
+Runs the unit tests located in the directory `src/test/java`:
 
 ```sh
 mvn test
@@ -33,7 +39,7 @@ This app uses [Selenium](http://www.seleniumhq.org) for API client testing over 
 
 Next, you have to enter the path to your recently downloaded driver in the environment variable `SELENIUM_WEBDRIVER_PATH`.
 
-Run following command to trigger the tests in directory `src/integration-test/java`
+Run following command to trigger the tests in directory `src/integration-test/java`:
 
 ```sh
 mvn integration-test
@@ -41,7 +47,7 @@ mvn integration-test
 
 ## Eclipse IDE Support
 
-Adds Eclipse Dynamic Web support to the project 
+Adds Eclipse Dynamic Web support to the project:
 
 ```sh
 mvn eclipse:eclipse
@@ -49,25 +55,25 @@ mvn eclipse:eclipse
 
 ## Build and run with Docker
 
-First build and package the project with maven
+First build and package the project with maven:
 
 ```sh
-docker run -it --rm -v "$PWD":/app -w /app maven:3.3-jdk-8 mvn clean package
+docker run -it --rm -v "$PWD":/app -w /app maven:3.3-jdk-8 mvn clean package -DskipTests
 ```
 
-Build your image
+Build your image:
 
 ```sh
 docker build --rm=false -t aws-java-app .
 ```
 
-Run the recently built image
+Run the recently built image:
 
 ```sh
 docker run --rm -p 8080:8080 aws-java-app
 ```
 
-Enter following URL in your browser
+Enter following URL in your browser:
 
 ```sh
 http://localhost:8080/aws-java-app

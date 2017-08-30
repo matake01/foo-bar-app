@@ -15,11 +15,12 @@
 		<springframework.version>4.3.0.RELEASE</springframework.version>
         <jackson.library>2.7.5</jackson.library>
         <jstl.version>1.2</jstl.version>
-		<junit.version>4.11</junit.version>
-		<selenium.version>2.52.0</selenium.version>
 		<logback.version>1.0.13</logback.version>
 		<jcl-over-slf4j.version>1.7.5</jcl-over-slf4j.version>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<junit.version>4.11</junit.version>
+		<mockito.version>2.7.22</mockito.version>
+		<selenium.version>2.52.0</selenium.version>
 	</properties>
 	 
   	<dependencies>
@@ -60,18 +61,6 @@
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>${jackson.library}</version>
         </dependency>
-        
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-		</dependency>
-		
-		<dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>${selenium.version}</version>
-        </dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -91,6 +80,28 @@
 			<version>${jstl.version}</version>
 		</dependency>
 
+		<!-- Testing dependencies -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.mockito</groupId>
+		    <artifactId>mockito-core</artifactId>
+		    <version>${mockito.version}</version>
+		    <scope>test</scope>
+		</dependency>
+
+		<dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+            <scope>test</scope>
+        </dependency>
+        
 	</dependencies>
 
 	<build>
