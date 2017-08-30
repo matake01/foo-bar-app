@@ -50,6 +50,7 @@ Enter following URL in your browser
 
 ## Techniques used
 
+- [Spring REST Service](https://spring.io/guides/gs/rest-service/)
 - [Docker](http://www.docker.com)
 - [CircleCI](http://circleci.com)
 - [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/)
