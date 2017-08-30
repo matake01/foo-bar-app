@@ -30,6 +30,24 @@ Following commands will initiate
 ## Eclipse IDE Support
 - `mvn eclipse:eclipse` - Adds Eclipse Dynamic Web support
 
+## Build and run with Docker
+
+First build and package the project with maven
+
+`docker run -it --rm -v "$PWD":/app -w /app maven:3.3-jdk-8 mvn clean package`
+
+Build your image
+
+`docker build --rm=false -t aws-java-app .`
+
+Run the recently built image
+
+`docker run --rm -p 8080:8080 aws-java-app`
+
+Enter following URL in your browser
+
+`http://localhost:8080/aws-java-app`
+
 ## Techniques used
 
 - [Docker](http://www.docker.com)
