@@ -5,7 +5,7 @@ machine:
     version: 2.7.3
   services:
     - docker
-    
+
 general:
   artifacts:
     - "target/aws-java-app.war"
@@ -18,10 +18,9 @@ dependencies:
 
 test:
     override:
-    
-    # Run Unit and Integration tests
-    - mvn verify
-    
+      - chmod +x integration-test.sh
+      - ./integration-test.sh
+
     post:
     - docker run -d -p 8000:80 $DOCKER_ORGANISATION/$DOCKER_REPOSITORY_NAME:$CIRCLE_SHA1; sleep 1
     - curl -v -L --retry 5 --retry-delay 5 -v http://localhost:8000
@@ -31,5 +30,5 @@ deployment:
     branch: master
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - chmod +x ./deploy.sh
+      - chmod +x deploy.sh
       - ./deploy.sh $CIRCLE_SHA1 $DOCKER_ORGANISATION $DOCKER_REPOSITORY_NAME $AWS_APPLICATION_NAME $AWS_ENVIRONMENT_NAME $AWS_EB_BUCKET_NAME $AWS_REGION

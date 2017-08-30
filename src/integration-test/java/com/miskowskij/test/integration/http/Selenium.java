@@ -1,7 +1,5 @@
 package com.miskowskij.test.integration.http;
 
-import java.io.File;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
@@ -16,8 +14,8 @@ public class Selenium {
 	@BeforeClass
 	public static void setup() {
 		
-		File resourcesDirectory = new File("src/integration-test/resources");
-		String driverPath = resourcesDirectory.getAbsolutePath();
+		String driverPath = System.getenv("SELENIUM_WEBDRIVER_PATH");
+		System.out.println("DRIVERPATH => " + driverPath);
 		System.setProperty("webdriver.chrome.driver", driverPath);
 		
 		driver = new ChromeDriver(); // Default driver
