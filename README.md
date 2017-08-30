@@ -17,7 +17,7 @@ Supports both Unit and Integration Tests using Maven Surefire and Failsafe plugi
 Verify and run all tests
 
 ```sh
-mvn verify`
+mvn verify
 ```
 
 #### Run Unit Tests
