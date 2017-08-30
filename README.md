@@ -14,23 +14,30 @@ AWS distribution support according to the Continuous Integration/Delivery princi
 
 Supports both Unit and Integration Tests using Maven Surefire and Failsafe plugins.
 
-- `mvn verify` - Runs all tests
+Verify and run all tests
+
+`mvn verify`
 
 ### Run Unit Tests
 
-All unit tests are located in the directory `src/test/java` and do not need any further setup. 
-- `mvn test` - Runs the unit tests
+Runs the unit tests located in the directory `src/test/java` and do not need any further setup. 
+
+`mvn test`
 
 ### Run Integration Tests
 This app uses [Selenium](http://www.seleniumhq.org) for API client testing over Http which requires a WebDriver to be downloaded. The default driver is set to be the [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads).
 
 Next, you have to enter the path to your recently downloaded driver in the environment variable `SELENIUM_WEBDRIVER_PATH`.
 
-Following commands will trigger the tests 
-- `mvn integration-test` - Runs the integration tests in directory `src/integration-test/java`
+Run following command to trigger the tests in directory `src/integration-test/java`
+
+`mvn integration-test`
 
 ## Eclipse IDE Support
-- `mvn eclipse:eclipse` - Adds Eclipse Dynamic Web support
+
+Adds Eclipse Dynamic Web support to the project 
+
+`mvn eclipse:eclipse`
 
 ## Build and run with Docker
 

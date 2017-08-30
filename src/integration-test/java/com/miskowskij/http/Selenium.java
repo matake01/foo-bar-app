@@ -15,8 +15,9 @@ public class Selenium {
 	public static void setup() {
 		String driverPath = System.getenv("SELENIUM_WEBDRIVER_PATH");
 		System.setProperty("webdriver.chrome.driver", driverPath);
-				
-		driver = new ChromeDriver();
+		
+		driver = new ChromeDriver(); // Default driver
+		
 		// driver = new FirefoxDriver();
 	}
 	
