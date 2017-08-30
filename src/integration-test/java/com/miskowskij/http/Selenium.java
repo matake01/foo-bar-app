@@ -13,8 +13,9 @@ public class Selenium {
 	
 	@BeforeClass
 	public static void setup() {
-		System.setProperty("webdriver.chrome.driver", "/Users/mathiasakerberg/Documents/development/misc/chrome-driver/chromedriver");
-		
+		String driverPath = System.getenv("SELENIUM_WEBDRIVER_PATH");
+		System.setProperty("webdriver.chrome.driver", driverPath);
+				
 		driver = new ChromeDriver();
 		// driver = new FirefoxDriver();
 	}

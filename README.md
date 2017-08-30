@@ -22,9 +22,11 @@ All unit tests are located in the directory `src/test/java` and do not need any 
 - `mvn test` - Runs the unit tests
 
 ### Run Integration Tests
-This app uses [Selenium](http://www.seleniumhq.org) for API client testing over Http. To be able to run the integration test the path of the local web driver has to be set in `Selenium.java` located in `src/integration-test/java/com/miskowskij/http/`.
+This app uses [Selenium](http://www.seleniumhq.org) for API client testing over Http which requires a WebDriver to be downloaded. The default driver is set to be the [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads).
 
-Following commands will initiate 
+Next, you have to enter the path to your recently downloaded driver in the environment variable `SELENIUM_WEBDRIVER_PATH`.
+
+Following commands will trigger the tests 
 - `mvn integration-test` - Runs the integration tests in directory `src/integration-test/java`
 
 ## Eclipse IDE Support
