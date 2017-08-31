@@ -9,7 +9,7 @@ fetch_chromedriver () {
   wget -nv https://chromedriver.storage.googleapis.com/2.31/chromedriver_linux64.zip
 
   echo "Extracting file..."
-  tar -zxvf chromedriver_linux64.zip
+  unzip chromedriver_linux64.zip
 
   WEBDRIVER_NAME="chromedriver"
   echo "$WEBDRIVER_NAME fetched successfully!"
@@ -33,4 +33,4 @@ handle_selenium_webdrivers () {
 }
 
 handle_selenium_webdrivers
-execute_tests
+# execute_tests
