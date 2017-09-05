@@ -19,11 +19,13 @@ dependencies:
 
 test:
     pre:
-      - apt-get install unzip
       - chmod +x integration-test.sh
 
     override:
       - ./integration-test.sh
+      - ./acceptance-test.sh
+      - ./performance-test.sh
+      - ./security-test.sh
 
     post:
     - docker run -d -p 8080:8080 $DOCKER_ORGANISATION/$DOCKER_REPOSITORY_NAME:$CIRCLE_SHA1; sleep 1

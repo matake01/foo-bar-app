@@ -33,4 +33,4 @@ handle_selenium_webdrivers () {
 }
 
 handle_selenium_webdrivers
-# execute_tests
+execute_tests
