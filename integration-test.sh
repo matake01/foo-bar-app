@@ -4,7 +4,14 @@ execute_tests () {
   \mvn verify
 }
 
-fetch_chromedriver () {
+install_chrome () {
+  wget -N https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P ~/
+  sudo dpkg -i --force-depends ~/google-chrome-stable_current_amd64.deb
+  sudo apt-get -f install -y
+  sudo dpkg -i --force-depends ~/google-chrome-stable_current_amd64.deb
+}
+
+install_chromedriver () {
   echo "Downloading ChromeDriver..."
   wget -nv https://chromedriver.storage.googleapis.com/2.31/chromedriver_linux64.zip
 
@@ -16,7 +23,7 @@ fetch_chromedriver () {
 }
 
 handle_selenium_webdrivers () {
-  fetch_chromedriver
+  install_chromedriver
 
   CURRENT_PATH=$(pwd)
   echo "PWD => $CURRENT_PATH"
@@ -32,5 +39,6 @@ handle_selenium_webdrivers () {
   echo "ENV => $SELENIUM_ENV=$WEBDRIVER_PATH"
 }
 
+install_chrome
 handle_selenium_webdrivers
 execute_tests
