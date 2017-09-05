@@ -14,7 +14,6 @@ mvn clean install
 
 - JDK 1.8
 - Maven 3.X
-- [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads)
 
 ## Techniques used
 
@@ -45,7 +44,9 @@ mvn test
 #### Run Integration Tests
 This boilerplate project uses [Selenium](http://www.seleniumhq.org) for API client testing over Http, which requires a WebDriver to be downloaded. 
 
-The default driver is set to [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads). Before you will be able to run the tests, you have to enter the path to your recently downloaded driver in the environment variable `SELENIUM_WEBDRIVER_PATH`.
+The default driver is set to Chrome. Be sure that you have both [Chrome](https://www.google.se/chrome/browser/desktop/index.html) and a [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads) installed. 
+
+Next, you have to set the location path of the WebDriver in the environment variable `SELENIUM_WEBDRIVER_PATH`.
 
 Run following command to trigger the tests in directory `src/integration-test/java`:
 

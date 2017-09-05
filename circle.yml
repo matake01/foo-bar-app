@@ -25,12 +25,12 @@ test:
 
     # Unit Test Reports
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
-    - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+    - find . -type f -regex ".*/target/surefire-reports/*.xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
 
 deployment:
   elasticbeanstalk:
     branch: master
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      # - chmod +x deploy.sh
-      # - ./deploy.sh $CIRCLE_SHA1 $DOCKER_ORGANISATION $DOCKER_REPOSITORY_NAME $AWS_APPLICATION_NAME $AWS_ENVIRONMENT_NAME $AWS_EB_BUCKET_NAME $AWS_REGION
+      - chmod +x deploy.sh
+      - ./deploy.sh $CIRCLE_SHA1 $DOCKER_ORGANISATION $DOCKER_REPOSITORY_NAME $AWS_APPLICATION_NAME $AWS_ENVIRONMENT_NAME $AWS_EB_BUCKET_NAME $AWS_REGION
