@@ -1,0 +1,33 @@
+
+{
+    "AWSEBDockerrunVersion": "2",
+    "family": "aws-java-app",
+    "volumes": [
+        {
+            "name": "aws-java-app-vol",
+            "host": {}
+        }
+    ],
+    "containerDefinitions": [
+        {
+            "environment": [],
+            "name": "aws-java-app-vol",
+            "image": "goffinator/aws-java-app",
+            "cpu": 10,
+            "memory": 500,
+            "portMappings": [
+                {
+                    "containerPort": 8080,
+                    "hostPort": 80
+                }
+            ],
+            "mountPoints": [
+                {
+                    "sourceVolume": "aws-java-app-vol",
+                    "containerPath": "/var/www/aws-java-app-vol"
+                }
+            ],
+            "essential": true
+        }
+    ]
+}
