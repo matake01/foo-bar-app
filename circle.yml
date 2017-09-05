@@ -6,22 +6,17 @@ machine:
   services:
     - docker
 
-#general:
-#  artifacts:
-#    - "target/aws-java-app.war"
-
 dependencies:
   pre:
     - pip install awscli
 
-test:
-    pre:
-      - chmod +x integration-test.sh
+  override:
+    - mvn clean package
+    - docker build --rm=false -t $DOCKER_ORGANISATION/$DOCKER_REPOSITORY_NAME .
+    - docker tag $DOCKER_ORGANISATION/$DOCKER_REPOSITORY_NAME $DOCKER_ORGANISATION/$DOCKER_REPOSITORY_NAME:$CIRCLE_SHA1
 
+test:
     override:
-      - mvn clean package
-      - docker build --rm=false -t $DOCKER_ORGANISATION/$DOCKER_REPOSITORY_NAME .
-      - docker tag $DOCKER_ORGANISATION/$DOCKER_REPOSITORY_NAME $DOCKER_ORGANISATION/$DOCKER_REPOSITORY_NAME:$CIRCLE_SHA1
       - ./integration-test.sh
 
     post:
