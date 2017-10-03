@@ -1,0 +1,9 @@
+2017-10-03 10:41:45 DEBUG c.miskowskij.app.service.AppService - welcome to bar!
+2017-10-03 10:41:45 DEBUG c.miskowskij.app.service.AppService - welcome to foo!
+2017-10-03 10:41:45 DEBUG c.miskowskij.app.service.AppService - welcome to root!
+2017-10-03 10:42:41 DEBUG c.miskowskij.app.service.AppService - welcome to bar!
+2017-10-03 10:42:41 DEBUG c.miskowskij.app.service.AppService - welcome to foo!
+2017-10-03 10:42:41 DEBUG c.miskowskij.app.service.AppService - welcome to root!
+2017-10-03 10:43:11 DEBUG c.miskowskij.app.service.AppService - welcome to bar!
+2017-10-03 10:43:11 DEBUG c.miskowskij.app.service.AppService - welcome to foo!
+2017-10-03 10:43:11 DEBUG c.miskowskij.app.service.AppService - welcome to root!

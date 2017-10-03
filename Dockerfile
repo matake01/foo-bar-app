@@ -1,4 +1,4 @@
-FROM tomcat:8
+FROM tomcat:8-jre8
 
 MAINTAINER Mathias Åkerberg <zegoffinator@gmail.com>
 
