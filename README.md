@@ -44,20 +44,16 @@ This boilerplate project uses [Selenium](http://www.seleniumhq.org) for API clie
 
 The default driver is set to Chrome. For this case; be sure that both [Chrome](https://www.google.se/chrome/browser/desktop/index.html) and a [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads) is installed. 
 
-```sh
 * **SELENIUM_WEBDRIVER_PATH** - The full path to your local WebDriver 
-```
 
 #### Persistence Context
 
-```sh
 * **DB_DRIVER** - The connector driver (E.g. com.mysql.cj.jdbc.Driver)
 * **DB_URL** - The full url to your DB (E.g. jdbc:mysql://localhost:3306/aws_java_app)
 * **DB_USERNAME** - Your DB Username
 * **DB_PASSWORD** - Your DB Password
 * **HIBERNATE_DIALECT** - The hibernate dialect type(E.g. org.hibernate.dialect.MySQLDialect)
 * **HIBERNATE_HBM2DDL_AUTO** - (Optional) In development/test mode this may be set to 'create-drop' 
-```
 
 
 ## Testing
