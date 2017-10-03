@@ -1,7 +1,22 @@
 #! /bin/bash
 
 execute_tests () {
-  \mvn verify
+  \mvn verify -Ptests
+}
+
+handle_selenium_webdrivers () {
+  install_chromedriver
+
+  CURRENT_PATH=$(pwd)
+  WEBDRIVER_PATH="$CURRENT_PATH/$WEBDRIVER_NAME"
+
+  chmod +x $WEBDRIVER_PATH
+
+  SELENIUM_ENV='SELENIUM_WEBDRIVER_PATH'
+  unset $SELENIUM_ENV
+
+  export $SELENIUM_ENV="$WEBDRIVER_PATH"
+  echo "ENV => $SELENIUM_ENV=$WEBDRIVER_PATH"
 }
 
 install_chrome () {
@@ -20,23 +35,6 @@ install_chromedriver () {
 
   WEBDRIVER_NAME="chromedriver"
   echo "$WEBDRIVER_NAME fetched successfully!"
-}
-
-handle_selenium_webdrivers () {
-  install_chromedriver
-
-  CURRENT_PATH=$(pwd)
-  echo "PWD => $CURRENT_PATH"
-
-  WEBDRIVER_PATH="$CURRENT_PATH/$WEBDRIVER_NAME"
-
-  chmod +x $WEBDRIVER_PATH
-
-  SELENIUM_ENV='SELENIUM_WEBDRIVER_PATH'
-  unset $SELENIUM_ENV
-
-  export $SELENIUM_ENV="$WEBDRIVER_PATH"
-  echo "ENV => $SELENIUM_ENV=$WEBDRIVER_PATH"
 }
 
 install_chrome

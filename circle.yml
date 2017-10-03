@@ -27,6 +27,10 @@ test:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex "target/surefire-reports/*.xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
 
+    # Integration Test Reports
+    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
+    - find . -type f -regex "target/failsafe-reports/*.xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+
 deployment:
   elasticbeanstalk:
     branch: master
