@@ -28,23 +28,9 @@ mvn clean install
 
 ## Configuration
 
-### Environment variables
+### Setup environment variables
 
 Before you're able to build the project, some environment variables need to be setup with the correct values.
-
-#### Logging
-
-To be able to store your logging entries, following variable need to be set:
-
-* **LOG_DIR** - The path to the directory where you want your logging files to be persisted. 
-
-#### Selenium
-
-This boilerplate project uses [Selenium](http://www.seleniumhq.org) for API client testing over Http, which requires a WebDriver to be downloaded. 
-
-The default driver is set to Chrome. For this case; be sure that both [Chrome](https://www.google.se/chrome/browser/desktop/index.html) and a [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads) is installed. 
-
-* **SELENIUM_WEBDRIVER_PATH** - The full path to your local WebDriver 
 
 #### Persistence Context
 
@@ -55,6 +41,19 @@ The default driver is set to Chrome. For this case; be sure that both [Chrome](h
 * **HIBERNATE_DIALECT** - The hibernate dialect type(E.g. org.hibernate.dialect.MySQLDialect)
 * **HIBERNATE_HBM2DDL_AUTO** - (Optional) In development/test mode this may be set to 'create-drop' 
 
+#### Selenium
+
+This boilerplate project uses [Selenium](http://www.seleniumhq.org) for API client testing over Http, which requires a WebDriver to be downloaded. 
+
+The default driver is set to Chrome. For this case; be sure that both [Chrome](https://www.google.se/chrome/browser/desktop/index.html) and a [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads) is installed. 
+
+* **SELENIUM_WEBDRIVER_PATH** - The full path to your local WebDriver 
+
+#### Logging
+
+To be able to store your logging entries, following variable need to be set:
+
+* **LOG_DIR** - The path to the directory where you want your logging files to be persisted. 
 
 ## Testing
 
