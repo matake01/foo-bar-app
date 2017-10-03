@@ -1,8 +1,10 @@
-# Java CI/CD App Boilerplate
+# DevOps Java Application Template
 
-This app is created by the standard Maven Webapp archetype with Spring REST support added. 
+This DevOps web app boilerplate template is created regarding to the Maven Webapp archetype with Spring REST & Data JPA support added. 
 
-Distributed at AWS under the Continuous Integration + Delivery principle.
+The project is also following the standards for Continuous Integration & Deployment by using defined pipelines (`cricle.yml`) at the cloud service [CircleCI](http://circleci.com).
+
+The deployment stage is covered by [Docker Hub](hub.docker.com) and distribution at AWS using [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/).
 
 Following command will build and package the project:
 
