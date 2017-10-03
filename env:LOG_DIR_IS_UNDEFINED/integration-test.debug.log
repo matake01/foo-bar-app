@@ -1,0 +1,83 @@
+2017-10-03 14:32:32 DEBUG c.miskowskij.app.service.AppService - welcome to bar!
+2017-10-03 14:32:32 DEBUG c.miskowskij.app.service.AppService - welcome to foo!
+2017-10-03 14:32:32 DEBUG c.miskowskij.app.service.AppService - welcome to root!
+2017-10-03 14:32:44 DEBUG c.m.a.persistence.PersistenceContext - PersistenceContext initiated
+2017-10-03 14:32:44 DEBUG c.m.a.persistence.PersistenceContext - DataSourceConfig: {DB_DRIVER=, DB_USERNAME=, DB_URL=, DB_PASSWORD=}
+2017-10-03 14:33:12 INFO  c.m.a.i.p.u.UserRepositoryImplJdbcTest - Starting UserRepositoryImplJdbcTest on Mathiass-MacBook-Pro.local with PID 4941 (started by mathiasakerberg in /Users/mathiasakerberg/Documents/development/java/aws-java-app)
+2017-10-03 14:33:12 DEBUG c.m.a.i.p.u.UserRepositoryImplJdbcTest - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE
+2017-10-03 14:33:12 INFO  c.m.a.i.p.u.UserRepositoryImplJdbcTest - The following profiles are active: jdbc
+2017-10-03 14:33:12 DEBUG c.m.a.persistence.PersistenceContext - PersistenceContext initiated
+2017-10-03 14:33:12 DEBUG c.m.a.persistence.PersistenceContext - DataSourceConfig: {DB_DRIVER=, DB_USERNAME=, DB_URL=, DB_PASSWORD=}
+2017-10-03 14:33:23 INFO  c.m.a.i.p.u.UserRepositoryImplTest - Starting UserRepositoryImplTest on Mathiass-MacBook-Pro.local with PID 4941 (started by mathiasakerberg in /Users/mathiasakerberg/Documents/development/java/aws-java-app)
+2017-10-03 14:33:23 DEBUG c.m.a.i.p.u.UserRepositoryImplTest - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE
+2017-10-03 14:33:23 INFO  c.m.a.i.p.u.UserRepositoryImplTest - No active profile set, falling back to default profiles: default
+2017-10-03 14:33:23 DEBUG c.m.a.persistence.PersistenceContext - PersistenceContext initiated
+2017-10-03 14:33:23 DEBUG c.m.a.persistence.PersistenceContext - DataSourceConfig: {DB_DRIVER=, DB_USERNAME=, DB_URL=, DB_PASSWORD=}
+2017-10-03 14:33:33 INFO  c.m.a.i.p.user.UserRepositoryTest - Starting UserRepositoryTest on Mathiass-MacBook-Pro.local with PID 4941 (started by mathiasakerberg in /Users/mathiasakerberg/Documents/development/java/aws-java-app)
+2017-10-03 14:33:33 DEBUG c.m.a.i.p.user.UserRepositoryTest - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE
+2017-10-03 14:33:33 INFO  c.m.a.i.p.user.UserRepositoryTest - No active profile set, falling back to default profiles: default
+2017-10-03 14:33:33 DEBUG c.m.a.persistence.PersistenceContext - PersistenceContext initiated
+2017-10-03 14:33:33 DEBUG c.m.a.persistence.PersistenceContext - DataSourceConfig: {DB_DRIVER=, DB_USERNAME=, DB_URL=, DB_PASSWORD=}
+2017-10-03 14:33:43 INFO  c.m.a.i.p.user.UserRepositoryTest - Starting UserRepositoryTest on Mathiass-MacBook-Pro.local with PID 4941 (started by mathiasakerberg in /Users/mathiasakerberg/Documents/development/java/aws-java-app)
+2017-10-03 14:33:43 DEBUG c.m.a.i.p.user.UserRepositoryTest - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE
+2017-10-03 14:33:43 INFO  c.m.a.i.p.user.UserRepositoryTest - No active profile set, falling back to default profiles: default
+2017-10-03 14:33:43 DEBUG c.m.a.persistence.PersistenceContext - PersistenceContext initiated
+2017-10-03 14:33:43 DEBUG c.m.a.persistence.PersistenceContext - DataSourceConfig: {DB_DRIVER=, DB_USERNAME=, DB_URL=, DB_PASSWORD=}
+2017-10-03 14:33:53 INFO  c.m.a.i.p.user.UserRepositoryTest - Starting UserRepositoryTest on Mathiass-MacBook-Pro.local with PID 4941 (started by mathiasakerberg in /Users/mathiasakerberg/Documents/development/java/aws-java-app)
+2017-10-03 14:33:53 DEBUG c.m.a.i.p.user.UserRepositoryTest - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE
+2017-10-03 14:33:53 INFO  c.m.a.i.p.user.UserRepositoryTest - No active profile set, falling back to default profiles: default
+2017-10-03 14:33:53 DEBUG c.m.a.persistence.PersistenceContext - PersistenceContext initiated
+2017-10-03 14:33:53 DEBUG c.m.a.persistence.PersistenceContext - DataSourceConfig: {DB_DRIVER=, DB_USERNAME=, DB_URL=, DB_PASSWORD=}
+2017-10-03 14:34:04 INFO  c.m.a.i.p.user.UserRepositoryTest - Starting UserRepositoryTest on Mathiass-MacBook-Pro.local with PID 4941 (started by mathiasakerberg in /Users/mathiasakerberg/Documents/development/java/aws-java-app)
+2017-10-03 14:34:04 DEBUG c.m.a.i.p.user.UserRepositoryTest - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE
+2017-10-03 14:34:04 INFO  c.m.a.i.p.user.UserRepositoryTest - No active profile set, falling back to default profiles: default
+2017-10-03 14:34:04 DEBUG c.m.a.persistence.PersistenceContext - PersistenceContext initiated
+2017-10-03 14:34:04 DEBUG c.m.a.persistence.PersistenceContext - DataSourceConfig: {DB_DRIVER=, DB_USERNAME=, DB_URL=, DB_PASSWORD=}
+2017-10-03 14:34:14 INFO  c.m.a.i.p.user.UserRepositoryTest - Starting UserRepositoryTest on Mathiass-MacBook-Pro.local with PID 4941 (started by mathiasakerberg in /Users/mathiasakerberg/Documents/development/java/aws-java-app)
+2017-10-03 14:34:14 DEBUG c.m.a.i.p.user.UserRepositoryTest - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE
+2017-10-03 14:34:14 INFO  c.m.a.i.p.user.UserRepositoryTest - No active profile set, falling back to default profiles: default
+2017-10-03 14:34:14 DEBUG c.m.a.persistence.PersistenceContext - PersistenceContext initiated
+2017-10-03 14:34:14 DEBUG c.m.a.persistence.PersistenceContext - DataSourceConfig: {DB_DRIVER=, DB_USERNAME=, DB_URL=, DB_PASSWORD=}
+2017-10-03 14:34:24 INFO  c.m.a.i.p.user.UserRepositoryTest - Starting UserRepositoryTest on Mathiass-MacBook-Pro.local with PID 4941 (started by mathiasakerberg in /Users/mathiasakerberg/Documents/development/java/aws-java-app)
+2017-10-03 14:34:24 DEBUG c.m.a.i.p.user.UserRepositoryTest - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE
+2017-10-03 14:34:24 INFO  c.m.a.i.p.user.UserRepositoryTest - No active profile set, falling back to default profiles: default
+2017-10-03 14:34:24 DEBUG c.m.a.persistence.PersistenceContext - PersistenceContext initiated
+2017-10-03 14:34:24 DEBUG c.m.a.persistence.PersistenceContext - DataSourceConfig: {DB_DRIVER=, DB_USERNAME=, DB_URL=, DB_PASSWORD=}
+2017-10-03 14:34:34 INFO  c.m.a.i.p.user.UserRepositoryTest - Starting UserRepositoryTest on Mathiass-MacBook-Pro.local with PID 4941 (started by mathiasakerberg in /Users/mathiasakerberg/Documents/development/java/aws-java-app)
+2017-10-03 14:34:34 DEBUG c.m.a.i.p.user.UserRepositoryTest - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE
+2017-10-03 14:34:34 INFO  c.m.a.i.p.user.UserRepositoryTest - No active profile set, falling back to default profiles: default
+2017-10-03 14:34:34 DEBUG c.m.a.persistence.PersistenceContext - PersistenceContext initiated
+2017-10-03 14:34:34 DEBUG c.m.a.persistence.PersistenceContext - DataSourceConfig: {DB_DRIVER=, DB_USERNAME=, DB_URL=, DB_PASSWORD=}
+2017-10-03 14:34:44 INFO  c.m.a.i.p.user.UserRepositoryTest - Starting UserRepositoryTest on Mathiass-MacBook-Pro.local with PID 4941 (started by mathiasakerberg in /Users/mathiasakerberg/Documents/development/java/aws-java-app)
+2017-10-03 14:34:44 DEBUG c.m.a.i.p.user.UserRepositoryTest - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE
+2017-10-03 14:34:44 INFO  c.m.a.i.p.user.UserRepositoryTest - No active profile set, falling back to default profiles: default
+2017-10-03 14:34:44 DEBUG c.m.a.persistence.PersistenceContext - PersistenceContext initiated
+2017-10-03 14:34:44 DEBUG c.m.a.persistence.PersistenceContext - DataSourceConfig: {DB_DRIVER=, DB_USERNAME=, DB_URL=, DB_PASSWORD=}
+2017-10-03 14:34:55 INFO  c.m.a.i.p.user.UserRepositoryTest - Starting UserRepositoryTest on Mathiass-MacBook-Pro.local with PID 4941 (started by mathiasakerberg in /Users/mathiasakerberg/Documents/development/java/aws-java-app)
+2017-10-03 14:34:55 DEBUG c.m.a.i.p.user.UserRepositoryTest - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE
+2017-10-03 14:34:55 INFO  c.m.a.i.p.user.UserRepositoryTest - No active profile set, falling back to default profiles: default
+2017-10-03 14:34:55 DEBUG c.m.a.persistence.PersistenceContext - PersistenceContext initiated
+2017-10-03 14:34:55 DEBUG c.m.a.persistence.PersistenceContext - DataSourceConfig: {DB_DRIVER=, DB_USERNAME=, DB_URL=, DB_PASSWORD=}
+2017-10-03 14:35:37 DEBUG c.miskowskij.app.service.AppService - welcome to bar!
+2017-10-03 14:35:37 DEBUG c.miskowskij.app.service.AppService - welcome to foo!
+2017-10-03 14:35:37 DEBUG c.miskowskij.app.service.AppService - welcome to root!
+2017-10-03 14:36:46 INFO  c.m.a.i.p.user.UserRepositoryTest - Starting UserRepositoryTest on Mathiass-MacBook-Pro.local with PID 4966 (started by mathiasakerberg in /Users/mathiasakerberg/Documents/development/java/aws-java-app)
+2017-10-03 14:36:46 DEBUG c.m.a.i.p.user.UserRepositoryTest - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE
+2017-10-03 14:36:46 INFO  c.m.a.i.p.user.UserRepositoryTest - No active profile set, falling back to default profiles: default
+2017-10-03 14:36:47 DEBUG c.m.a.persistence.PersistenceContext - PersistenceContext initiated
+2017-10-03 14:36:47 DEBUG c.m.a.persistence.PersistenceContext - DataSourceConfig: {DB_DRIVER=com.mysql.cj.jdbc.Driver, DB_USERNAME=root, DB_URL=jdbc:mysql://localhost:33306/aws_java_app?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC, DB_PASSWORD=root}
+2017-10-03 14:36:47 DEBUG c.m.a.persistence.PersistenceContext - JpaConfig: {HIBERNATE_HBM2DDL_AUTO=create-drop, HIBERNATE_DIALECT=org.hibernate.dialect.MySQLDialect}
+2017-10-03 14:36:47 DEBUG c.m.a.persistence.PersistenceContext - Final value of 'hibernate.hbm2ddl.auto'=create-drop
+2017-10-03 14:36:48 DEBUG c.m.a.p.PersistenceInitializer - PersistenceInitializer initiated
+2017-10-03 14:36:48 DEBUG c.m.app.persistence.AuditingConfig - AuditingConfig initiated
+2017-10-03 14:36:50 INFO  c.m.a.i.p.user.UserRepositoryTest - Started UserRepositoryTest in 23.427 seconds (JVM running for 29.154)
+2017-10-03 14:37:31 INFO  c.m.a.i.p.user.UserRepositoryTest - Starting UserRepositoryTest on Mathiass-MacBook-Pro.local with PID 4968 (started by mathiasakerberg in /Users/mathiasakerberg/Documents/development/java/aws-java-app)
+2017-10-03 14:37:31 DEBUG c.m.a.i.p.user.UserRepositoryTest - Running with Spring Boot v1.5.7.RELEASE, Spring v4.3.11.RELEASE
+2017-10-03 14:37:31 INFO  c.m.a.i.p.user.UserRepositoryTest - No active profile set, falling back to default profiles: default
+2017-10-03 14:37:32 DEBUG c.m.a.persistence.PersistenceContext - PersistenceContext initiated
+2017-10-03 14:37:32 DEBUG c.m.a.persistence.PersistenceContext - DataSourceConfig: {DB_DRIVER=com.mysql.cj.jdbc.Driver, DB_USERNAME=root, DB_URL=jdbc:mysql://localhost:33306/aws_java_app?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC, DB_PASSWORD=root}
+2017-10-03 14:37:32 DEBUG c.m.a.persistence.PersistenceContext - JpaConfig: {HIBERNATE_HBM2DDL_AUTO=create-drop, HIBERNATE_DIALECT=org.hibernate.dialect.MySQLDialect}
+2017-10-03 14:37:32 DEBUG c.m.a.persistence.PersistenceContext - Final value of 'hibernate.hbm2ddl.auto'=create-drop
+2017-10-03 14:37:34 DEBUG c.m.a.p.PersistenceInitializer - PersistenceInitializer initiated
+2017-10-03 14:37:34 DEBUG c.m.app.persistence.AuditingConfig - AuditingConfig initiated
+2017-10-03 14:37:35 INFO  c.m.a.i.p.user.UserRepositoryTest - Started UserRepositoryTest in 23.338 seconds (JVM running for 29.054)
