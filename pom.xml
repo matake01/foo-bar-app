@@ -35,7 +35,10 @@
 	
 	<profiles>
 	 		<profile>
-			<id>tests</id>
+			<id>hsqldb</id>
+			<activation>
+		    	<activeByDefault>true</activeByDefault>
+		    </activation>
 			<properties>
 				<db.driver>org.hsqldb.jdbcDriver</db.driver>
 				<db.url>jdbc:hsqldb:hsql://localhost/xdb</db.url>

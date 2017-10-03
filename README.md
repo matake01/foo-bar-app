@@ -1,6 +1,6 @@
 # DevOps Java Application Template
 
-This DevOps web app boilerplate template is created regarding to the Maven Webapp archetype with Spring REST & Data JPA support added. 
+This DevOps web app boilerplate project template is created regarding to the Maven Web App Archetype with Spring REST & Data JPA support added. 
 
 The project is also following the standards for Continuous Integration & Deployment by using defined pipelines (`cricle.yml`) at the cloud service [CircleCI](http://circleci.com).
 
@@ -43,6 +43,12 @@ Before you're able to build the project, some environment variables need to be s
 * **HIBERNATE_DIALECT** - The hibernate dialect type(E.g. org.hibernate.dialect.MySQLDialect)
 * **HIBERNATE_HBM2DDL_AUTO** - (Optional) In development/test mode this may be set to 'create-drop' 
 
+To use your recently set persistence context, you have to add `-P-hsqldb` to your subsequent Maven requests:
+
+```sh
+mvn <COMMAND> -P-hsqldb
+```
+
 #### Selenium
 
 This boilerplate project uses [Selenium](http://www.seleniumhq.org) for API client testing over Http, which requires a WebDriver to be downloaded. 
@@ -57,20 +63,24 @@ To be able to store your logging entries, following variable need to be set:
 
 * **LOG_DIR** - The path to the directory where you want your logging files to be persisted. 
 
-## Testing
+## Testing using in-memory database
 
 Supports both Unit and Integration Tests using Maven Surefire and Failsafe plugins.
 
-Verify and run all tests with your environment database:
+Verify and run all tests with the pre-defined in-memory database profile:
 
 ```sh
 mvn verify
 ```
 
-Verify and run all tests with the pre-defined in-memory database profile:
+## Testing using custom database
+
+Ensure that your environment variables for the Persistence Context is set regarding to the configuration section above.
+
+Verify and run all tests with your environment database by deactivating the pre-defined HSQLDB profile:
 
 ```sh
-mvn verify -Ptests
+mvn verify -P-hsqldb
 ```
 
 #### Run Unit Tests

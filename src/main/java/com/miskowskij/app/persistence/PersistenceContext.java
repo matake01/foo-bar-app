@@ -139,11 +139,11 @@ public class PersistenceContext{
 	   
    private void setupDataSourceConfig(Environment env) {
 		this.dataSourceConfig = new HashMap<String, String>();
-		
+
 		this.dataSourceConfig.put(PROPERTY_NAME_DB_DRIVER_CLASS, System.getProperty(PROPERTY_NAME_DB_DRIVER_CLASS));
 		this.dataSourceConfig.put(PROPERTY_NAME_DB_URL, System.getProperty(PROPERTY_NAME_DB_URL));
 		this.dataSourceConfig.put(PROPERTY_NAME_DB_USER, System.getProperty(PROPERTY_NAME_DB_USER));
-		this.dataSourceConfig.put(PROPERTY_NAME_DB_PASSWORD, env.getRequiredProperty(PROPERTY_NAME_DB_PASSWORD));
+		this.dataSourceConfig.put(PROPERTY_NAME_DB_PASSWORD, System.getProperty(PROPERTY_NAME_DB_PASSWORD));
 
 		this.dataSourceConfig.putIfAbsent(PROPERTY_NAME_DB_DRIVER_CLASS, env.getRequiredProperty(PROPERTY_NAME_DB_DRIVER_CLASS));
 		this.dataSourceConfig.putIfAbsent(PROPERTY_NAME_DB_URL, env.getRequiredProperty(PROPERTY_NAME_DB_URL));
