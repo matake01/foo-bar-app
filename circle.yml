@@ -1,6 +1,6 @@
 machine:
   java:
-    version: openjdk7
+    version: openjdk8
   python:
     version: 2.7.3
   services:

@@ -22,7 +22,7 @@ DOCKER_CONTAINER_NAME_APP='app'
 
 # App Envs
 DB_DRIVER='com.mysql.cj.jdbc.Driver'
-DB_URL='jdbc:mysql://app_mysql:3306/appdb?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC'
+DB_URL='jdbc:mysql://app_mysql:33306/appdb?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC'
 DB_USERNAME='appuser'
 DB_PASSWORD='appuser'
 HIBERNATE_DIALECT='org.hibernate.dialect.MySQLDialect'
@@ -64,7 +64,7 @@ install_chrome () {
 
 install_mysql () {
   \docker run --name $DOCKER_CONTAINER_NAME_MYSQL \
-  -p 3306:3306 \
+  -p 33306:3306 \
   -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD \
   -e MYSQL_DATABASE=$MYSQL_DATABASE \
   -e MYSQL_USER=$MYSQL_USER \
