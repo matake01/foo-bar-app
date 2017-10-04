@@ -123,9 +123,9 @@ test_http_app_access () {
   echo "Tests HTTP access of Docker image..."
 
   URL="http://$HOST_IP_ADDRESS:$APP_PORT/$APP_NAME"
-  echo " URL => $ACCESS_URL"
+  echo " URL => $URL"
 
-  \curl -v -L --retry 5 --retry-delay 5 -v $ACCESS_URL
+  \curl -v -L --retry 5 --retry-delay 5 -v $URL
 }
 
 setup_selenium_environment
