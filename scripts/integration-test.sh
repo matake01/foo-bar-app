@@ -30,7 +30,7 @@ DB_PASSWORD='appuser'
 HIBERNATE_DIALECT='org.hibernate.dialect.MySQLDialect'
 HIBERNATE_HBM2DDL_AUTO='create-drop'
 
-# Database configuration
+# Database
 MYSQL_PORT='33306'
 MYSQL_SERVER_VERSION='5.6'
 MYSQL_ROOT_PASSWORD='secretpassword'
@@ -38,10 +38,10 @@ MYSQL_DATABASE='appdb'
 MYSQL_USER='appuser'
 MYSQL_PASSWORD='apppassword'
 
-# Selenium configuration
+# Selenium
 SELENIUM_WEBDRIVER_ENV='SELENIUM_WEBDRIVER_PATH'
 SELENIUM_WEBDRIVER_FILE_NAME='chromedriver'
-SELENIUM_WEBDRIVER_PATH="$CURRENT_PATH/$SELENIUM_WEBDRIVER_FILE_NAME"
+SELENIUM_WEBDRIVER_LOCATION="$CURRENT_PATH/$SELENIUM_WEBDRIVER_FILE_NAME"
 
 test_docker_access () {
   install_mysql
@@ -83,8 +83,6 @@ install_chromedriver () {
 
   echo "Extracting file..."
   unzip $CHROME_DRIVER_FILE_NAME
-
-  echo "$SELENIUM_WEBDRIVER_FILE_NAME fetched successfully!"
 }
 
 run_application_with_docker () {
@@ -102,8 +100,8 @@ run_application_with_docker () {
 
 set_selenium_env () {
   unset $SELENIUM_WEBDRIVER_ENV
-  export $SELENIUM_WEBDRIVER_ENV="$SELENIUM_WEBDRIVER_PATH"
-  echo "ENV => $SELENIUM_WEBDRIVER_ENV=$SELENIUM_WEBDRIVER_PATH"
+  export $SELENIUM_WEBDRIVER_ENV="$SELENIUM_WEBDRIVER_LOCATION"
+  echo "ENV => $SELENIUM_WEBDRIVER_ENV=$SELENIUM_WEBDRIVER_LOCATION"
 }
 
 test_docker_http_access () {
