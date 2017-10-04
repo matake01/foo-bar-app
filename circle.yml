@@ -17,19 +17,17 @@ dependencies:
 
 test:
     override:
-      - ./scripts/integration-test.sh
+      - ./scripts/integration-test.sh $CIRCLE_SHA1 $DOCKER_ORGANISATION $DOCKER_REPOSITORY_NAME
 
     post:
-    - docker run -d -p 8080:8080 $DOCKER_ORGANISATION/$DOCKER_REPOSITORY_NAME:$CIRCLE_SHA1; sleep 1
-    - curl -v -L --retry 5 --retry-delay 5 -v http://localhost:8080/app
 
-    # Unit Test Reports
-    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
-    - find . -type f -regex "target/surefire-reports/*.xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+      # Unit Test Reports
+      - mkdir -p $CIRCLE_TEST_REPORTS/junit/
+      - find . -type f -regex "target/surefire-reports/*.xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
 
-    # Integration Test Reports
-    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
-    - find . -type f -regex "target/failsafe-reports/*.xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+      # Integration Test Reports
+      - mkdir -p $CIRCLE_TEST_REPORTS/junit/
+      - find . -type f -regex "target/failsafe-reports/*.xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
 
 deployment:
   elasticbeanstalk:
