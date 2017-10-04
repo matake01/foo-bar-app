@@ -44,16 +44,22 @@ SELENIUM_WEBDRIVER_FILE_NAME='chromedriver'
 SELENIUM_WEBDRIVER_LOCATION="$CURRENT_PATH/$SELENIUM_WEBDRIVER_FILE_NAME"
 
 test_docker_access () {
+  echo "Test Docker Access..."
+
   install_mysql
-  run_application_with_docker
-  test_docker_http_access
+  run_application
+  test_http_app_access
 }
 
 test_software () {
+  echo "Test software..."
+
   \mvn verify
 }
 
 setup_selenium_environment () {
+  echo "Setup Selenium..."
+
   install_chrome
   install_chromedriver
   chmod +x $SELENIUM_WEBDRIVER_PATH
@@ -61,6 +67,8 @@ setup_selenium_environment () {
 }
 
 install_chrome () {
+  echo "Install Chrome Stable..."
+
   wget -N $CHROME_STABLE_URL -P ~/
   sudo dpkg -i --force-depends ~/$CHROME_STABLE_FILE_NAME
   sudo apt-get -f install -y
@@ -68,6 +76,8 @@ install_chrome () {
 }
 
 install_mysql () {
+  echo "Install MySQL..."
+
   \docker run --name $DOCKER_CONTAINER_NAME_MYSQL \
   -p $MYSQL_PORT:3306 \
   -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD \
@@ -78,14 +88,15 @@ install_mysql () {
 }
 
 install_chromedriver () {
-  echo "Downloading ChromeDriver..."
-  wget -nv $CHROME_DRIVER_URL/$CHROME_DRIVER_VERSION/$CHROME_DRIVER_FILE_NAME
+  echo "Install ChromeDriver..."
 
-  echo "Extracting file..."
+  wget -nv $CHROME_DRIVER_URL/$CHROME_DRIVER_VERSION/$CHROME_DRIVER_FILE_NAME
   unzip $CHROME_DRIVER_FILE_NAME
 }
 
-run_application_with_docker () {
+run_application () {
+  echo "Runs application..."
+
   docker run --name $DOCKER_CONTAINER_NAME_APP \
   -p $APP_PORT:8080 \
   --link $DOCKER_CONTAINER_NAME_MYSQL:mysql \
@@ -99,13 +110,20 @@ run_application_with_docker () {
 }
 
 set_selenium_env () {
+  echo "Setup Selenium Environment variables..."
+
   unset $SELENIUM_WEBDRIVER_ENV
   export $SELENIUM_WEBDRIVER_ENV="$SELENIUM_WEBDRIVER_LOCATION"
   echo "ENV => $SELENIUM_WEBDRIVER_ENV=$SELENIUM_WEBDRIVER_LOCATION"
 }
 
-test_docker_http_access () {
-  \curl -v -L --retry 5 --retry-delay 5 -v http://$HOST_IP_ADDRESS:$APP_PORT/$APP_NAME
+test_http_app_access () {
+  echo "Tests HTTP access of Docker image..."
+
+  URL="http://$HOST_IP_ADDRESS:$APP_PORT/$APP_NAME"
+  echo " URL => $ACCESS_URL"
+
+  \curl -v -L --retry 5 --retry-delay 5 -v $ACCESS_URL
 }
 
 setup_selenium_environment
