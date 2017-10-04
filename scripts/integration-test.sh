@@ -85,6 +85,8 @@ install_mysql () {
   -e MYSQL_USER=$MYSQL_USER \
   -e MYSQL_PASSWORD=$MYSQL_PASSWORD \
   -d mysql/mysql-server:$MYSQL_SERVER_VERSION
+
+  \sleep 3
 }
 
 install_chromedriver () {
