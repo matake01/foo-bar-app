@@ -17,12 +17,12 @@ CHROME_STABLE_URL="https://dl.google.com/linux/direct/$CHROME_STABLE_FILE_NAME"
 # Docker
 DOCKER_REGISTRY=$2
 DOCKER_IMAGE=$3
-DOCKER_CONTAINER_NAME_MYSQL='app_mysql'
-DOCKER_CONTAINER_NAME_APP='app'
+DOCKER_APP_PORT='8081'
+DOCKER_APP_CONTAINER_NAME='app'
+DOCKER_MYSQL_PORT='33306'
+DOCKER_MYSQL_CONTAINER_NAME='app-mysql'
 
 # App Envs
-APP_NAME=$DOCKER_CONTAINER_NAME_APP
-APP_PORT='8081'
 DB_DRIVER='com.mysql.cj.jdbc.Driver'
 DB_URL='jdbc:mysql://app_mysql:33306/appdb?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC'
 DB_USERNAME='appuser'
@@ -30,9 +30,10 @@ DB_PASSWORD='appuser'
 HIBERNATE_DIALECT='org.hibernate.dialect.MySQLDialect'
 HIBERNATE_HBM2DDL_AUTO='create-drop'
 
-# Database
-MYSQL_PORT='33306'
+# MySQL Generics
 MYSQL_SERVER_VERSION='5.6'
+
+# MySQL Envs
 MYSQL_ROOT_PASSWORD='secretpassword'
 MYSQL_DATABASE='appdb'
 MYSQL_USER='appuser'
@@ -78,8 +79,8 @@ install_chrome () {
 install_mysql () {
   echo "Install MySQL..."
 
-  \docker run --name $DOCKER_CONTAINER_NAME_MYSQL \
-  -p $MYSQL_PORT:3306 \
+  \docker run --name $DOCKER_MYSQL_CONTAINER_NAME \
+  -p $DOCKER_MYSQL_PORT:3306 \
   -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD \
   -e MYSQL_DATABASE=$MYSQL_DATABASE \
   -e MYSQL_USER=$MYSQL_USER \
@@ -99,9 +100,9 @@ install_chromedriver () {
 run_application () {
   echo "Runs application..."
 
-  \docker run --name $DOCKER_CONTAINER_NAME_APP \
-  -p $APP_PORT:8080 \
-  --link $DOCKER_CONTAINER_NAME_MYSQL:mysql \
+  \docker run --name $DOCKER_APP_CONTAINER_NAME \
+  -p $DOCKER_APP_PORT:8080 \
+  --link $DOCKER_MYSQL_CONTAINER_NAME:mysql \
   -e DB_DRIVER=$DB_DRIVER \
   -e DB_URL=$DB_URL \
   -e DB_USERNAME=$DB_USERNAME \
@@ -124,7 +125,7 @@ set_selenium_env () {
 test_http_app_access () {
   echo "Tests HTTP access of Docker image..."
 
-  URL="http://$HOST_IP_ADDRESS:$APP_PORT/$APP_NAME"
+  URL="http://$HOST_IP_ADDRESS:$DOCKER_APP_PORT/app"
   echo " URL => $URL"
 
   \curl -v -L --retry 5 --retry-delay 5 -v $URL
