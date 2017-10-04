@@ -1,6 +1,6 @@
 # DevOps Java Application Template
 
-This DevOps web app boilerplate project template is created regarding to the Maven Web App Archetype with Spring REST & Data JPA support added. 
+This DevOps web app boilerplate project template is created according to the Maven Web App Archetype with Spring REST & Data JPA support added. 
 
 The project is also following the standards for Continuous Integration & Deployment by using defined pipelines (`cricle.yml`) at the cloud service [CircleCI](http://circleci.com).
 
