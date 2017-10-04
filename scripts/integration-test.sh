@@ -22,7 +22,7 @@ DOCKER_CONTAINER_NAME_APP='app'
 
 # App Envs
 APP_NAME=$DOCKER_CONTAINER_NAME_APP
-APP_PORT='8080'
+APP_PORT='8081'
 DB_DRIVER='com.mysql.cj.jdbc.Driver'
 DB_URL='jdbc:mysql://app_mysql:33306/appdb?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC'
 DB_USERNAME='appuser'
