@@ -97,7 +97,7 @@ install_chromedriver () {
 run_application () {
   echo "Runs application..."
 
-  docker run --name $DOCKER_CONTAINER_NAME_APP \
+  \docker run --name $DOCKER_CONTAINER_NAME_APP \
   -p $APP_PORT:8080 \
   --link $DOCKER_CONTAINER_NAME_MYSQL:mysql \
   -e DB_DRIVER=$DB_DRIVER \
@@ -107,6 +107,8 @@ run_application () {
   -e HIBERNATE_DIALECT=$HIBERNATE_DIALECT \
   -e HIBERNATE_HBM2DDL_AUTO=$HIBERNATE_HBM2DDL_AUTO \
   -d $DOCKER_REGISTRY/$DOCKER_IMAGE
+
+  \sleep 3
 }
 
 set_selenium_env () {
