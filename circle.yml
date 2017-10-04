@@ -11,13 +11,13 @@ dependencies:
     - pip install awscli
 
   override:
-    - docker run -it --rm -v "$PWD":/app -w /app maven:3.3-jdk-8 mvn clean package
-    - docker build --rm=false -t $DOCKER_ORGANISATION/$DOCKER_REPOSITORY_NAME .
-    - docker tag $DOCKER_ORGANISATION/$DOCKER_REPOSITORY_NAME $DOCKER_ORGANISATION/$DOCKER_REPOSITORY_NAME:$CIRCLE_SHA1
+    - mvn clean package
+    - docker build --rm=false -t $DOCKER_REGISTRY/$DOCKER_IMAGE .
+    - docker tag $DOCKER_REGISTRY/$DOCKER_IMAGE $DOCKER_REGISTRY/$DOCKER_IMAGE:$CIRCLE_SHA1
 
 test:
     override:
-      - ./scripts/integration-test.sh $CIRCLE_SHA1 $DOCKER_ORGANISATION $DOCKER_REPOSITORY_NAME
+      - ./scripts/integration-test.sh $CIRCLE_SHA1 $DOCKER_REGISTRY $DOCKER_IMAGE
 
     post:
 
@@ -35,4 +35,4 @@ deployment:
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - chmod +x ./scripts/deploy.sh
-      - ./scripts/deploy.sh $CIRCLE_SHA1 $DOCKER_ORGANISATION $DOCKER_REPOSITORY_NAME $AWS_APPLICATION_NAME $AWS_ENVIRONMENT_NAME $AWS_EB_BUCKET_NAME $AWS_REGION
+      - ./scripts/deploy.sh $CIRCLE_SHA1 $DOCKER_REGISTRY $DOCKER_IMAGE $AWS_APPLICATION_NAME $AWS_ENVIRONMENT_NAME $AWS_EB_BUCKET_NAME $AWS_REGION
