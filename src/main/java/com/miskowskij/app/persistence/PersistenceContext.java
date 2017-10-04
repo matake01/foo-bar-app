@@ -1,7 +1,5 @@
 package com.miskowskij.app.persistence;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
@@ -21,6 +19,12 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.miskowskij.app.persistence.configuration.datasource.DataSourceConfig;
+import com.miskowskij.app.persistence.configuration.datasource.SpringEnvironment;
+import com.miskowskij.app.persistence.configuration.datasource.SystemEnvironment;
+import com.miskowskij.app.persistence.configuration.datasource.SystemProperties;
+import com.miskowskij.app.persistence.configuration.jpa.JpaConfig;
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories
@@ -32,16 +36,8 @@ public class PersistenceContext{
             "com.miskowskij.app.persistence"
     };
     
-    private static final String PROPERTY_NAME_DB_DRIVER_CLASS = "DB_DRIVER";
-    private static final String PROPERTY_NAME_DB_PASSWORD = "DB_PASSWORD";
-    private static final String PROPERTY_NAME_DB_URL = "DB_URL";
-    private static final String PROPERTY_NAME_DB_USER = "DB_USERNAME";
-
-    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "HIBERNATE_DIALECT";
-    private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "HIBERNATE_HBM2DDL_AUTO";
-    
-    private Map<String, String> dataSourceConfig = null;
-    private Map<String, String> jpaConfig = null;
+    private DataSourceConfig dataSourceConfig = null;
+    private JpaConfig jpaConfig = null;
 
     @Autowired
 	public PersistenceContext(Environment env) {
@@ -61,10 +57,10 @@ public class PersistenceContext{
 	
 	  setupDataSourceConfig(env);
 	  
-	  dataSource.setDriverClassName(this.dataSourceConfig.get(PROPERTY_NAME_DB_DRIVER_CLASS));
-      dataSource.setUrl(this.dataSourceConfig.get(PROPERTY_NAME_DB_URL));      
-      dataSource.setUsername(this.dataSourceConfig.get(PROPERTY_NAME_DB_USER));
-      dataSource.setPassword(this.dataSourceConfig.get(PROPERTY_NAME_DB_PASSWORD));
+	  dataSource.setDriverClassName(this.dataSourceConfig.getDriver());
+      dataSource.setUrl(this.dataSourceConfig.getUrl());      
+      dataSource.setUsername(this.dataSourceConfig.getUsername());
+      dataSource.setPassword(this.dataSourceConfig.getPassword());
 
       return dataSource;
    }
@@ -91,7 +87,7 @@ public class PersistenceContext{
       // SessionFactory is created or closed.
       jpaProperties.put("hibernate.hbm2ddl.auto", "none");
 
-      String hbm2ddlAuto = this.jpaConfig.get(PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO);
+      String hbm2ddlAuto = this.jpaConfig.getHbm2ddlAuto();
       if (hbm2ddlAuto != null && !hbm2ddlAuto.isEmpty()) {
           jpaProperties.put("hibernate.hbm2ddl.auto", hbm2ddlAuto);
       } 
@@ -100,7 +96,7 @@ public class PersistenceContext{
       
       // Configures the used database dialect. This allows Hibernate to create SQL
       // that is optimized for the used database.
-      jpaProperties.put("hibernate.dialect", this.jpaConfig.get(PROPERTY_NAME_HIBERNATE_DIALECT));
+      jpaProperties.put("hibernate.dialect", this.jpaConfig.getDialect());
       
       // Specifies extended C3P0/pooling properties for use in need of extended customizations
       // regarding thread pooling and additional performance handling.
@@ -138,30 +134,42 @@ public class PersistenceContext{
    }
 	   
    private void setupDataSourceConfig(Environment env) {
-		this.dataSourceConfig = new HashMap<String, String>();
-
-		this.dataSourceConfig.put(PROPERTY_NAME_DB_DRIVER_CLASS, System.getProperty(PROPERTY_NAME_DB_DRIVER_CLASS));
-		this.dataSourceConfig.put(PROPERTY_NAME_DB_URL, System.getProperty(PROPERTY_NAME_DB_URL));
-		this.dataSourceConfig.put(PROPERTY_NAME_DB_USER, System.getProperty(PROPERTY_NAME_DB_USER));
-		this.dataSourceConfig.put(PROPERTY_NAME_DB_PASSWORD, System.getProperty(PROPERTY_NAME_DB_PASSWORD));
-
-		this.dataSourceConfig.putIfAbsent(PROPERTY_NAME_DB_DRIVER_CLASS, env.getRequiredProperty(PROPERTY_NAME_DB_DRIVER_CLASS));
-		this.dataSourceConfig.putIfAbsent(PROPERTY_NAME_DB_URL, env.getRequiredProperty(PROPERTY_NAME_DB_URL));
-		this.dataSourceConfig.putIfAbsent(PROPERTY_NAME_DB_USER, env.getRequiredProperty(PROPERTY_NAME_DB_USER));
-		this.dataSourceConfig.putIfAbsent(PROPERTY_NAME_DB_PASSWORD, env.getRequiredProperty(PROPERTY_NAME_DB_PASSWORD));
-
+		DataSourceConfig dataSourceConfig = new SystemProperties();
+		
+		if (dataSourceConfig.isEmpty()) {
+			dataSourceConfig = new SpringEnvironment(env);
+		}
+		
+		if (dataSourceConfig.isEmpty()) {
+			dataSourceConfig = new SystemEnvironment();
+		}
+		
+		if (dataSourceConfig.isEmpty()) {
+			throw new RuntimeException("Failed to load DataSourceConfig properties");
+		}
+		
+		this.dataSourceConfig = dataSourceConfig;
+		
 		logger.debug("DataSourceConfig: " + this.dataSourceConfig.toString());
 	}
 	
 	private void setupJpaConfig(Environment env) {
-		this.jpaConfig = new HashMap<String, String>();
+		JpaConfig jpaConfig = new com.miskowskij.app.persistence.configuration.jpa.SystemProperties();
 		
-		this.jpaConfig.put(PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO, System.getProperty(PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO));
-		this.jpaConfig.put(PROPERTY_NAME_HIBERNATE_DIALECT, System.getProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
-	
-		this.jpaConfig.putIfAbsent(PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO));
-		this.jpaConfig.putIfAbsent(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
-	
+		if (jpaConfig.isEmpty()) {
+			jpaConfig = new com.miskowskij.app.persistence.configuration.jpa.SpringEnvironment(env);
+		}
+		
+		if (jpaConfig.isEmpty()) {
+			jpaConfig = new com.miskowskij.app.persistence.configuration.jpa.SystemEnvironment();
+		}
+		
+		if (jpaConfig.isEmpty()) {
+			throw new RuntimeException("Failed to load JpaConfig properties");
+		}
+		
+		this.jpaConfig = jpaConfig;
+		
 		logger.debug("JpaConfig: " + this.jpaConfig.toString());
 	}
    

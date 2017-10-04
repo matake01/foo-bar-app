@@ -16,7 +16,6 @@
 package com.miskowskij.app.persistence.user;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

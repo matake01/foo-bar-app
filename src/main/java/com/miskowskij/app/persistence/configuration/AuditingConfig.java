@@ -1,4 +1,4 @@
-package com.miskowskij.app.persistence;
+package com.miskowskij.app.persistence.configuration;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
