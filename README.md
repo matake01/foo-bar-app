@@ -1,99 +1,135 @@
 # DevOps Java Application Template
 
-This DevOps web app boilerplate project template is created according to the Maven Web App Archetype with Spring REST & Data JPA support added. 
+This DevOps boilerplate project template follows the Maven Web App Archetype with Spring REST & Data JPA support added. 
 
 The project is also following the standards for Continuous Integration & Deployment by using defined pipelines (`cricle.yml`) at the cloud service [CircleCI](http://circleci.com).
 
 The deployment stage is covered by [Docker Hub](hub.docker.com) and distribution at AWS using [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/).
 
-Following command will build and package the project:
+# Getting Started
+
+First, be sure that you the mandatory system properties (see section *System Properties* below) are set within the runtime environment.
+
+Next, run following command to build the project:
 
 ```sh
 mvn clean install
+```
+
+If you want to exclude the integration tests:
+
+```sh
+mvn clean install -DskipITs
 ```
 
 ## Prerequisites
 
 - JDK 1.8
 - Maven 3.X
-- Selenium WebDriver
+- [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads)
 
 ## Techniques used
 
 - [Spring REST Service](https://spring.io/guides/gs/rest-service/)
 - [Spring Data JPA](https://projects.spring.io/spring-data-jpa/)
 - [Docker](http://www.docker.com)
-- [CircleCI](http://circleci.com)
-- [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/)
+- [Jenkins](http://jenkins.io)
 - [SeleniumHQ](http://seleniumhq.org)
 - [HSQLDB](http://hsqldb.org/)
 
-## Configuration
+## System Properties
 
-### Setup environment variables
+Following attributes has to be set either in your global environment or JVM:
 
-Before you're able to build the project, some environment variables need to be setup with the correct values.
+* **app.domain** - Used for integration tests. Defines the HTTP root endpoint where the application runs (E.g. http://example.com/app) 
+* **spring.profiles.active** - Set to either *'development'* or *'production'*. See section *Spring Profiles* for more details.
+* **spring.datasource.jdbc.driver** - The JDBC Driver
+* **spring.datasource.jdbc.url** - The DB URL
+* **spring.datasource.jdbc.username** - The DB username
+* **spring.datasource.jdbc.password** - The DB password
+* **spring.jpa.hibernate.dialect** - The dialect type of the ORM. E.g. *org.hibernate.dialect.MySQLDialect*
+* **spring.jpa.hibernate.hbm2ddl.auto** - Defines how the database schema should be populated: *'create'*, *'create-drop'*, *'validate'* or *'none'*.
+* **webdriver.chrome.driver** - The path to the [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads) in your global environment. 
+* **log.dir** - The path to store log files
 
-#### Persistence Context
+## Spring Profiles
 
-* **DB_DRIVER** - The connector driver (E.g. com.mysql.cj.jdbc.Driver)
-* **DB_URL** - The full url to your DB (E.g. jdbc:mysql://localhost:3306/aws_java_app)
-* **DB_USERNAME** - Your DB Username
-* **DB_PASSWORD** - Your DB Password
-* **HIBERNATE_DIALECT** - The hibernate dialect type(E.g. org.hibernate.dialect.MySQLDialect)
-* **HIBERNATE_HBM2DDL_AUTO** - (Optional) In development/test mode this may be set to 'create-drop' 
+During application runtime either one or more profiles may be active within the context. The behaviour may vary depending on the profile configuration. 
 
-To use your recently set persistence context, you have to add `-P-hsqldb` to your subsequent Maven requests:
+The application is pre-defined with two default profiles: *development* and *production*.
+
+### Development
+
+Activate the development profile:
 
 ```sh
-mvn <COMMAND> -P-hsqldb
+spring.profiles.active="development"
 ```
 
-#### Selenium
+### Production
 
-This boilerplate project uses [Selenium](http://www.seleniumhq.org) for API client testing over Http, which requires a WebDriver to be downloaded. 
+Activate the production profile:
 
-The default driver is set to Chrome. For this case; be sure that both [Chrome](https://www.google.se/chrome/browser/desktop/index.html) and a [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads) is installed. 
+```sh
+spring.profiles.active="production"
+```
 
-* **SELENIUM_WEBDRIVER_PATH** - The full path to your local WebDriver 
+The production profile differentiates from the development behaviour in the following way:
 
-#### Logging
+```sh
+spring.jpa.hibernate.hbm2ddl.auto="none"
+```
 
-To be able to store your logging entries, following variable need to be set:
+## Maven Profiles
 
-* **LOG_DIR** - The path to the directory where you want your logging files to be persisted. 
+### Test
 
-## Testing using in-memory database
+A pre-defined profile is configured in the `pom.xml`. The profile is mainly for usage within Autonuomous Testing/Continuous Integration pipelines.
 
-Supports both Unit and Integration Tests using Maven Surefire and Failsafe plugins.
+```sh
+app.domain="http://localhost:9090/app"
+spring.profiles.active="dev"
+spring.datasource.jdbc.driver="org.hsqldb.jdbcDriver"
+spring.datasource.jdbc.url="jdbc:hsqldb:hsql://localhost/xdb"
+spring.datasource.jdbc.username="sa"
+spring.datasource.jdbc.password=""
+spring.jpa.hibernate.dialect="org.hibernate.dialect.HSQLDialect"
+spring.jpa.hibernate.hbm2ddl.auto="create-drop"
+webdriver.chrome.driver="${env.webdriver_chrome_driver}"
+log.dir="${project.basedir}/log"
+```
 
-Verify and run all tests with the pre-defined in-memory database profile:
+
+## Testing
+
+## Verify your commit
+
+Before any commits are performed into the global VCS, be sure that the last changes are verified. 
+
+Following command will execute all available unit and integration tests:
 
 ```sh
 mvn verify
 ```
 
-## Testing using custom database
+**Notice:** This is a mandatory step. Otherwise, your changes may fail in the autonomous pipelines.  
 
-Ensure that your environment variables for the Persistence Context is set regarding to the configuration section above.
 
-Verify and run all tests with your environment database by deactivating the pre-defined HSQLDB profile:
+#### Unit Tests
 
-```sh
-mvn verify -P-hsqldb
-```
+Tests the behaviours of single components according to the [SOLID](https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)) pattern.
 
-#### Run Unit Tests
-
-Runs tests located under `src/test/java` by:
+Directory location: `src/test/java`
 
 ```sh
 mvn test
 ```
 
-#### Run Integration Tests
+#### Integration Tests
 
-Run tests located under `src/integration-test/java` by:
+The integration tests covers more complex behaviours and dependencies between components. E.g. BDD, API and database tests.   
+
+Direcotry location: `src/integration-test/java`
 
 ```sh
 mvn integration-test
@@ -106,6 +142,7 @@ Adds Eclipse Dynamic Web support to the project:
 ```sh
 mvn eclipse:eclipse
 ```
+
 
 ## Build and run with Docker
 

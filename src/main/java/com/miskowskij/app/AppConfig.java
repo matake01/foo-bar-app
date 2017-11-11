@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.miskowskij.app" })
+@ComponentScan(basePackages = { "com.miskowskij.app.*" })
 public class AppConfig {
      
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(AppConfig.class);

@@ -8,26 +8,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.miskowskij.app.service.AppService;
 import com.miskowskij.app.service.user.UserDTO;
 import com.miskowskij.app.service.user.UserService;
   
 @RestController
-@RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseController {
  
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(UserController.class);
-
-	private final static AppService appService = new AppService();
 	
-	private final UserService userService;
+	private UserService userService;
 
+    public UserController() { }
+    
     @Autowired
-    UserController(UserService userService) {
-        this.userService = userService;
+    public void setUserService(UserService userService) {
+    	this.userService = userService;
     }
     
-    @RequestMapping(value = "/{username}", produces = "application/json")
+    @RequestMapping(value = "/user/{username}", produces = "application/json")
     public ResponseEntity<UserDTO> addUser(@PathVariable String username) {
 		logger.debug("[addUser] " + username);
 		

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.miskowskij.app.service.AppService;
 
 @RestController
-public class AppController {
+public class AppController extends BaseController {
  
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(AppController.class);
 

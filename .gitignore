@@ -6,3 +6,4 @@ bin
 .settings
 chromedriver*
 *IS_UNDEFINED
+log

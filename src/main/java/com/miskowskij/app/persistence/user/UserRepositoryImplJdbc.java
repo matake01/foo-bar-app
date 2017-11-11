@@ -17,22 +17,17 @@ package com.miskowskij.app.persistence.user;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Component;
 
-import com.miskowskij.app.AppConfig;
+import com.miskowskij.app.profile.datasource.DataSourceConfig;
 
 /**
  * Class with the implementation of the custom repository code. Uses JDBC in this case. For basic programatic setup see
@@ -62,7 +57,8 @@ class UserRepositoryImplJdbc extends JdbcDaoSupport implements CustomUserReposit
 	private static final String COMPLICATED_SQL = "SELECT * FROM User WHERE Username = 'username'";
 
 	@Autowired
-	public UserRepositoryImplJdbc(DataSource dataSource) {
+	public UserRepositoryImplJdbc(DataSourceConfig dataSourceConfig) {
+		DataSource dataSource = dataSourceConfig.getDataSource();
 		setDataSource(dataSource);
 	}
 
