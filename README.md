@@ -1,25 +1,21 @@
 # DevOps Java Application Template
 
-This DevOps boilerplate project template follows the Maven Web App Archetype with Spring REST & Data JPA support added. 
-
-The project is also following the standards for Continuous Integration & Deployment by using defined pipelines (`cricle.yml`) at the cloud service [CircleCI](http://circleci.com).
-
-The deployment stage is covered by [Docker Hub](hub.docker.com) and distribution at AWS using [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/).
+A boilerplate Java project focused on deliver basic DevOps flows such Continuous Integration, Continuous Delivery, containerizing with Docker and Cloud Computing over AWS Elastic Beanstalk.
 
 # Getting Started
 
-First, be sure that you the mandatory system properties (see section *System Properties* below) are set within the runtime environment.
+All Maven executions will use the pre-defined `test` profile (see section *Maven Profiles* below) and HSQLDB in-memory database by default.
 
-Next, run following command to build the project:
+Make a fresh install:
 
 ```sh
 mvn clean install
 ```
 
-If you want to exclude the integration tests:
+Build the final war and exclude any integration tests to speed up the process:
 
 ```sh
-mvn clean install -DskipITs
+mvn package -DskipITs
 ```
 
 ## Prerequisites
@@ -33,7 +29,8 @@ mvn clean install -DskipITs
 - [Spring REST Service](https://spring.io/guides/gs/rest-service/)
 - [Spring Data JPA](https://projects.spring.io/spring-data-jpa/)
 - [Docker](http://www.docker.com)
-- [Jenkins](http://jenkins.io)
+- [CricleCI](https://circleci.com/)
+- [AWS ElasticBeanstalk](https://aws.amazon.com/elasticbeanstalk/)
 - [SeleniumHQ](http://seleniumhq.org)
 - [HSQLDB](http://hsqldb.org/)
 
