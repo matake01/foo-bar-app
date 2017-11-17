@@ -23,22 +23,22 @@ import com.miskowskij.app.profile.jpa.JpaConfig;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories
-@ComponentScan(basePackages = { "com.miskowskij.app" })
+@ComponentScan(basePackages = { "com.miskowskij.app.*" })
 public class PersistenceContext{
- 
+
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(PersistenceContext.class);
-	
+
     private static final String[] ENTITY_PACKAGES = {
             "com.miskowskij.app.persistence"
     };
-        
+
 	public PersistenceContext() {
 		logger.debug("PersistenceContext initiated");
 	}
-   
+
     /**
      * Creates the bean that creates the JPA entity manager factory.
-     * 
+     *
      * @param dataSource    The datasource that provides the database connections.
      * @param env           The runtime environment of  our application.
      * @return
@@ -46,21 +46,21 @@ public class PersistenceContext{
    @Bean
    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSourceConfig dataSourceConfig, JpaConfig jpaConfig) {
       LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-                  
+
       dataSourceConfig.setup();
       jpaConfig.setup();
-      
+
       DataSource dataSource = dataSourceConfig.getDataSource();
       Properties jpaProperties = jpaConfig.getProperties();
 
       logger.debug("DataSource: " + dataSource.toString());
       logger.debug("JpaProperties: " + jpaProperties.toString());
-      
+
       entityManagerFactoryBean.setDataSource(dataSource);
       entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
       entityManagerFactoryBean.setPackagesToScan(ENTITY_PACKAGES);
       entityManagerFactoryBean.setJpaProperties(jpaProperties);
- 
+
       return entityManagerFactoryBean;
    }
 
@@ -68,7 +68,7 @@ public class PersistenceContext{
    /**
     * Creates the transaction manager bean that integrates the used JPA provider with the
     * Spring transaction mechanism.
-    * 
+    *
     * @param entityManagerFactory  The used JPA entity manager factory.
     * @return
     */
@@ -76,13 +76,13 @@ public class PersistenceContext{
    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory){
       JpaTransactionManager transactionManager = new JpaTransactionManager();
       transactionManager.setEntityManagerFactory(entityManagerFactory);
- 
+
       return transactionManager;
    }
- 
+
    @Bean
    public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
       return new PersistenceExceptionTranslationPostProcessor();
    }
-   
+
 }

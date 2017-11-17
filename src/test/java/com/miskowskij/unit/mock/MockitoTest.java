@@ -47,5 +47,5 @@ public class MockitoTest  {
 	        //assert
 	        assertEquals(-1, c.compareTo(9));
 	}
-	
+
 }

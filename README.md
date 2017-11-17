@@ -4,18 +4,24 @@ A boilerplate Java project focused on deliver basic DevOps flows such Continuous
 
 # Getting Started
 
-All Maven executions will use the pre-defined `test` profile (see section *Maven Profiles* below) and HSQLDB in-memory database by default.
+First, be sure that you the mandatory system properties (see section *System Properties* below) are set within the runtime environment.
 
-Make a fresh install:
+Clean and build:
 
 ```sh
 mvn clean install
 ```
 
-Build the final war and exclude any integration tests to speed up the process:
+Skip integration tests:
 
 ```sh
 mvn package -DskipITs
+```
+
+Skip all tests:
+
+```sh
+mvn package -DskipTests
 ```
 
 ## Prerequisites
@@ -38,20 +44,27 @@ mvn package -DskipITs
 
 Following attributes has to be set either in your global environment or JVM:
 
-* **app.domain** - Used for integration tests. Defines the HTTP root endpoint where the application runs (E.g. http://example.com/app) 
+#### Base
 * **spring.profiles.active** - Set to either *'development'* or *'production'*. See section *Spring Profiles* for more details.
+* **log.dir** - The path to store log files
+
+#### Persistence
+
 * **spring.datasource.jdbc.driver** - The JDBC Driver
 * **spring.datasource.jdbc.url** - The DB URL
 * **spring.datasource.jdbc.username** - The DB username
 * **spring.datasource.jdbc.password** - The DB password
 * **spring.jpa.hibernate.dialect** - The dialect type of the ORM. E.g. *org.hibernate.dialect.MySQLDialect*
 * **spring.jpa.hibernate.hbm2ddl.auto** - Defines how the database schema should be populated: *'create'*, *'create-drop'*, *'validate'* or *'none'*.
-* **webdriver.chrome.driver** - The path to the [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads) in your global environment. 
-* **log.dir** - The path to store log files
+
+#### Tests
+* **test.app.domain** - Used for integration tests. Defines the HTTP root endpoint where the application runs (E.g. http://example.com/app)
+* **test.user.agentid** - The AgentId of the superuser context during integration testing
+* **test.webdriver.chrome.driver** - Used by Selenium. Should be the full path to the [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads) in your local environment.
 
 ## Spring Profiles
 
-During application runtime either one or more profiles may be active within the context. The behaviour may vary depending on the profile configuration. 
+During application runtime either one or more profiles may be active within the context. The behaviour may vary depending on the profile configuration.
 
 The application is pre-defined with two default profiles: *development* and *production*.
 
@@ -60,7 +73,7 @@ The application is pre-defined with two default profiles: *development* and *pro
 Activate the development profile:
 
 ```sh
-spring.profiles.active="development"
+spring.profiles.active="dev"
 ```
 
 ### Production
@@ -84,7 +97,6 @@ spring.jpa.hibernate.hbm2ddl.auto="none"
 A pre-defined profile is configured in the `pom.xml`. The profile is mainly for usage within Autonuomous Testing/Continuous Integration pipelines.
 
 ```sh
-app.domain="http://localhost:9090/app"
 spring.profiles.active="dev"
 spring.datasource.jdbc.driver="org.hsqldb.jdbcDriver"
 spring.datasource.jdbc.url="jdbc:hsqldb:hsql://localhost/xdb"
@@ -92,7 +104,9 @@ spring.datasource.jdbc.username="sa"
 spring.datasource.jdbc.password=""
 spring.jpa.hibernate.dialect="org.hibernate.dialect.HSQLDialect"
 spring.jpa.hibernate.hbm2ddl.auto="create-drop"
-webdriver.chrome.driver="${env.webdriver_chrome_driver}"
+test.app.domain="http://localhost:9090/app"
+test.user.agentid="${env.TEST_USER_AGENTID}"
+test.webdriver.chrome.driver="${env.TEST_WEBDRIVER_CHROME_DRIVER}"
 log.dir="${project.basedir}/log"
 ```
 
@@ -101,16 +115,11 @@ log.dir="${project.basedir}/log"
 
 ## Verify your commit
 
-Before any commits are performed into the global VCS, be sure that the last changes are verified. 
-
-Following command will execute all available unit and integration tests:
+Run following command to verify and execute all tests:
 
 ```sh
 mvn verify
 ```
-
-**Notice:** This is a mandatory step. Otherwise, your changes may fail in the autonomous pipelines.  
-
 
 #### Unit Tests
 
@@ -166,5 +175,3 @@ Enter following URL in your browser:
 ```sh
 http://localhost:8080/app
 ```
-
-

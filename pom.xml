@@ -20,7 +20,7 @@
 		<app.name>app</app.name>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<jdk.version>1.8</jdk.version>
-		
+
 		<!-- Versions -->
 		<hibernate.validator.version>5.4.1.Final</hibernate.validator.version>
 		<hsqldb.version>2.3.1</hsqldb.version>
@@ -41,21 +41,22 @@
 
 	<profiles>
 		<profile>
-			<id>test</id>	
+			<id>test</id>
 			<activation>
 		      <activeByDefault>true</activeByDefault>
 		    </activation>
 			<properties>
-				<app.domain>http://localhost:9090/app</app.domain>
 				<spring.profiles.active>dev</spring.profiles.active>
+				<log.dir>${project.basedir}/log</log.dir>
+				<test.app.domain>http://localhost:9090/app</test.app.domain>
+				<test.user.agentid>${env.TEST_USER_AGENTID}</test.user.agentid>
+				<test.webdriver.chrome.driver>${env.TEST_WEBDRIVER_CHROME_DRIVER}</test.webdriver.chrome.driver>
 				<spring.datasource.jdbc.driver>org.hsqldb.jdbcDriver</spring.datasource.jdbc.driver>
 				<spring.datasource.jdbc.url>jdbc:hsqldb:hsql://localhost/xdb</spring.datasource.jdbc.url>
 				<spring.datasource.jdbc.username>sa</spring.datasource.jdbc.username>
 				<spring.datasource.jdbc.password></spring.datasource.jdbc.password>
 				<spring.jpa.hibernate.dialect>org.hibernate.dialect.HSQLDialect</spring.jpa.hibernate.dialect>
 				<spring.jpa.hibernate.hbm2ddl.auto>create-drop</spring.jpa.hibernate.hbm2ddl.auto>
-				<webdriver.chrome.driver>${env.webdriver_chrome_driver}</webdriver.chrome.driver>		
-				<log.dir>${project.basedir}/log</log.dir>
 			</properties>
 		</profile>
 	</profiles>
@@ -100,6 +101,7 @@
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>${hsqldb.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 
 		<!-- Javax -->
@@ -173,7 +175,7 @@
 	<build>
 		<finalName>${app.name}</finalName>
 		<plugins>
-    
+
 			<!-- Add Eclipse support -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -217,19 +219,7 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
 				<version>1.9.1</version>
-				<executions>					
-					<execution>
-			            <id>add-source</id>
-			            <phase>generate-sources</phase>
-			            <goals>
-			              <goal>add-source</goal>
-			            </goals>
-			            <configuration>
-			              <sources>
-			                <source>target/generated-sources/wsdl/PaymentSys</source>
-			              </sources>
-			            </configuration>
-		          	</execution>
+				<executions>
 					<execution>
 						<id>add-it-source</id>
 						<phase>generate-test-sources</phase>
@@ -256,7 +246,7 @@
 								</resource>
 							</resources>
 						</configuration>
-					</execution>	   
+					</execution>
 				</executions>
 			</plugin>
 
@@ -267,16 +257,7 @@
 				<configuration>
 					<excludedGroups>com.miskowskij.integration.IntegrationTest</excludedGroups>
 					<systemProperties>
-						<app.domain>${app.domain}</app.domain>
-						<spring.profiles.active>${spring.profiles.active}</spring.profiles.active>
-						<spring.datasource.jdbc.driver>${spring.datasource.jdbc.driver}</spring.datasource.jdbc.driver>
-						<spring.datasource.jdbc.url>${spring.datasource.jdbc.url}</spring.datasource.jdbc.url>
-						<spring.datasource.jdbc.username>${spring.datasource.jdbc.username}</spring.datasource.jdbc.username>
-						<spring.datasource.jdbc.password>${spring.datasource.jdbc.password}</spring.datasource.jdbc.password>
-						<spring.jpa.hibernate.dialect>${spring.jpa.hibernate.dialect}</spring.jpa.hibernate.dialect>
-						<spring.jpa.hibernate.hbm2ddl.auto>${spring.jpa.hibernate.hbm2ddl.auto}</spring.jpa.hibernate.hbm2ddl.auto>
-						<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
-						<log.dir>${log.dir}</log.dir>	
+						<log.dir>${log.dir}</log.dir>
 			        </systemProperties>
 				</configuration>
 				<executions>
@@ -299,7 +280,6 @@
 					</includes>
 					<groups>com.miskowskij.integration.IntegrationTest</groups>
 					<systemProperties>
-						<app.domain>${app.domain}</app.domain>
 						<spring.profiles.active>${spring.profiles.active}</spring.profiles.active>
 						<spring.datasource.jdbc.driver>${spring.datasource.jdbc.driver}</spring.datasource.jdbc.driver>
 						<spring.datasource.jdbc.url>${spring.datasource.jdbc.url}</spring.datasource.jdbc.url>
@@ -307,9 +287,11 @@
 						<spring.datasource.jdbc.password>${spring.datasource.jdbc.password}</spring.datasource.jdbc.password>
 						<spring.jpa.hibernate.dialect>${spring.jpa.hibernate.dialect}</spring.jpa.hibernate.dialect>
 						<spring.jpa.hibernate.hbm2ddl.auto>${spring.jpa.hibernate.hbm2ddl.auto}</spring.jpa.hibernate.hbm2ddl.auto>
-						<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
-						<log.dir>${log.dir}</log.dir>	
-			        </systemProperties>
+						<test.app.domain>${test.app.domain}</test.app.domain>
+						<test.user.agentid>${test.user.agentid}</test.user.agentid>
+						<test.webdriver.chrome.driver>${test.webdriver.chrome.driver}</test.webdriver.chrome.driver>
+						<log.dir>${log.dir}</log.dir>
+			     </systemProperties>
 				</configuration>
 				<executions>
 					<execution>
@@ -336,7 +318,6 @@
 						</goals>
 						<configuration>
 							<properties>
-								<app.domain>${app.domain}</app.domain>
 								<spring.profiles.active>${spring.profiles.active}</spring.profiles.active>
 								<spring.datasource.jdbc.driver>${spring.datasource.jdbc.driver}</spring.datasource.jdbc.driver>
 								<spring.datasource.jdbc.url>${spring.datasource.jdbc.url}</spring.datasource.jdbc.url>
@@ -344,8 +325,7 @@
 								<spring.datasource.jdbc.password>${spring.datasource.jdbc.password}</spring.datasource.jdbc.password>
 								<spring.jpa.hibernate.dialect>${spring.jpa.hibernate.dialect}</spring.jpa.hibernate.dialect>
 								<spring.jpa.hibernate.hbm2ddl.auto>${spring.jpa.hibernate.hbm2ddl.auto}</spring.jpa.hibernate.hbm2ddl.auto>
-								<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>							
-								<log.dir>${log.dir}</log.dir>	
+								<log.dir>${log.dir}</log.dir>
 							</properties>
 						</configuration>
 					</execution>
@@ -374,7 +354,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<!-- Embedded Tomcat server for Integration testing -->
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
@@ -383,7 +363,7 @@
 				<configuration>
 					<port>9090</port>
 					<path>/${app.name}</path>
-                    <tomcatLoggingFile>src/integration-test/resources/logback-integration-test.xml</tomcatLoggingFile>  
+                    <tomcatLoggingFile>src/integration-test/resources/logback-integration-test.xml</tomcatLoggingFile>
 				</configuration>
 				<executions>
 					<execution>
@@ -405,7 +385,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 		</plugins>
 
 	</build>
