@@ -1,10 +1,20 @@
-# DevOps Java Application Template
+# foo-bar-app
 
-A boilerplate Java project focused on deliver basic DevOps flows such Continuous Integration, Continuous Delivery, containerizing with Docker and Cloud Computing over AWS Elastic Beanstalk.
+## Prerequisites
 
-# Getting Started
+- JDK 1.8
+- Maven 3.X
+- [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads)
 
-First, be sure that you the mandatory system properties (see section *System Properties* below) are set within the runtime environment.
+## Techniques used
+
+- [Spring](https://spring.io/)
+- [Selenium](http://seleniumhq.org/)
+- [Docker](http://www.docker.com)
+- [CricleCI](https://circleci.com/)
+- [AWS ElasticBeanstalk](https://aws.amazon.com/elasticbeanstalk/)
+
+## Build and run
 
 Clean and build:
 
@@ -24,31 +34,19 @@ Skip all tests:
 mvn package -DskipTests
 ```
 
-## Prerequisites
+Run tests:
 
-- JDK 1.8
-- Maven 3.X
-- [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads)
-
-## Techniques used
-
-- [Spring REST Service](https://spring.io/guides/gs/rest-service/)
-- [Spring Data JPA](https://projects.spring.io/spring-data-jpa/)
-- [Docker](http://www.docker.com)
-- [CricleCI](https://circleci.com/)
-- [AWS ElasticBeanstalk](https://aws.amazon.com/elasticbeanstalk/)
-- [SeleniumHQ](http://seleniumhq.org)
-- [HSQLDB](http://hsqldb.org/)
+```sh
+mvn verify
+```
 
 ## System Properties
 
-Following attributes has to be set either in your global environment or JVM:
-
-#### Base
+### Base
 * **spring.profiles.active** - Set to either *'development'* or *'production'*. See section *Spring Profiles* for more details.
 * **log.dir** - The path to store log files
 
-#### Persistence
+### Persistence
 
 * **spring.datasource.jdbc.driver** - The JDBC Driver
 * **spring.datasource.jdbc.url** - The DB URL
@@ -57,20 +55,14 @@ Following attributes has to be set either in your global environment or JVM:
 * **spring.jpa.hibernate.dialect** - The dialect type of the ORM. E.g. *org.hibernate.dialect.MySQLDialect*
 * **spring.jpa.hibernate.hbm2ddl.auto** - Defines how the database schema should be populated: *'create'*, *'create-drop'*, *'validate'* or *'none'*.
 
-#### Tests
+### Tests
 * **test.app.domain** - Used for integration tests. Defines the HTTP root endpoint where the application runs (E.g. http://example.com/app)
 * **test.user.agentid** - The AgentId of the superuser context during integration testing
 * **test.webdriver.chrome.driver** - Used by Selenium. Should be the full path to the [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads) in your local environment.
 
 ## Spring Profiles
 
-During application runtime either one or more profiles may be active within the context. The behaviour may vary depending on the profile configuration.
-
-The application is pre-defined with two default profiles: *development* and *production*.
-
 ### Development
-
-Activate the development profile:
 
 ```sh
 spring.profiles.active="dev"
@@ -78,16 +70,8 @@ spring.profiles.active="dev"
 
 ### Production
 
-Activate the production profile:
-
 ```sh
 spring.profiles.active="production"
-```
-
-The production profile differentiates from the development behaviour in the following way:
-
-```sh
-spring.jpa.hibernate.hbm2ddl.auto="none"
 ```
 
 ## Maven Profiles
@@ -110,37 +94,6 @@ test.webdriver.chrome.driver="${env.TEST_WEBDRIVER_CHROME_DRIVER}"
 log.dir="${project.basedir}/log"
 ```
 
-
-## Testing
-
-## Verify your commit
-
-Run following command to verify and execute all tests:
-
-```sh
-mvn verify
-```
-
-#### Unit Tests
-
-Tests the behaviours of single components according to the [SOLID](https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)) pattern.
-
-Directory location: `src/test/java`
-
-```sh
-mvn test
-```
-
-#### Integration Tests
-
-The integration tests covers more complex behaviours and dependencies between components. E.g. BDD, API and database tests.   
-
-Direcotry location: `src/integration-test/java`
-
-```sh
-mvn integration-test
-```
-
 ## Eclipse IDE Support
 
 Adds Eclipse Dynamic Web support to the project:
@@ -149,10 +102,9 @@ Adds Eclipse Dynamic Web support to the project:
 mvn eclipse:eclipse
 ```
 
-
 ## Build and run with Docker
 
-First build and package the project with maven:
+Build Java binary:
 
 ```sh
 docker run -it --rm -v "$PWD":/app -w /app maven:3.3-jdk-8 mvn clean package
@@ -164,13 +116,13 @@ Build your image:
 docker build --rm=false -t app .
 ```
 
-Run the recently built image:
+Run built image:
 
 ```sh
 docker run --rm -p 8080:8080 app
 ```
 
-Enter following URL in your browser:
+Now available under:
 
 ```sh
 http://localhost:8080/app
