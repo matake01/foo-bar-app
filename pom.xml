@@ -29,7 +29,7 @@
 		<jackson.library>2.7.5</jackson.library>
 		<jcl-over-slf4j.version>1.7.5</jcl-over-slf4j.version>
 		<joda.time.version>2.9</joda.time.version>
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<logback.version>1.0.13</logback.version>
 		<mockito.version>2.7.22</mockito.version>
 		<mysql.connector.version>6.0.6</mysql.connector.version>
